@@ -10,7 +10,6 @@ import java.util.Set;
 
 public class Server implements Runnable
 {
-
   private ServerSocket serverSocket;
   private Socket socket;
   private boolean running = true;

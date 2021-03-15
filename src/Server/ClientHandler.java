@@ -9,10 +9,8 @@ public class ClientHandler implements Runnable
 {
 
   private Socket socket;
-  private ObjectOutputStream out ;
-  private ObjectInputStream in  ;
-
-
+  private ObjectOutputStream out;
+  private ObjectInputStream in;
 
   private String username;
   private Message message;
@@ -92,7 +90,8 @@ public class ClientHandler implements Runnable
     catch (IOException e)
     {
       e.printStackTrace();
-    };
+    }
+    ;
   }
 
   public String getUsername()
