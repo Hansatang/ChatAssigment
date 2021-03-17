@@ -30,5 +30,6 @@ public class ChatViewController
 
   @FXML public void getUsers()
   {
+
   }
 }

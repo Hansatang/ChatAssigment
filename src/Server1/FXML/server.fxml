@@ -16,7 +16,7 @@
                 style="-fx-border-radius: 4; -fx-background-color: #3cbc58;"
                 text="Start server" textFill="WHITE"/>
         <Label fx:id="label" layoutX="185.0" layoutY="70.0" prefHeight="42.0"
-               prefWidth="213.0" text="Server1.Server is turned off" textFill="#f5f5f2">
+               prefWidth="213.0" text="Server is turned off" textFill="#f5f5f2">
             <font>
                 <Font size="22.0"/>
             </font>
