@@ -24,7 +24,9 @@ public class LoginViewController
   }
 
 
-  @FXML public void startChat(ActionEvent event)
+
+
+  @FXML public void startChat(javafx.event.ActionEvent actionEvent)
   {
     viewModelLogin.startChat();
   }
