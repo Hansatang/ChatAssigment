@@ -6,6 +6,7 @@ import Shared.Message;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 
 public class ChatViewController
 {
@@ -20,7 +21,8 @@ public class ChatViewController
     this.viewModelChat = viewModelChat;
     sentMessageTextField.textProperty()
         .bindBidirectional(viewModelChat.messageProperty());
-
+    messagesTextArea.textProperty().bindBidirectional(
+        viewModelChat.chatProperty());
   }
 
   @FXML public void sendMessage()
@@ -32,4 +34,6 @@ public class ChatViewController
   {
 
   }
+
+
 }
