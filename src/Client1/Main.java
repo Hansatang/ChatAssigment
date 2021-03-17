@@ -22,5 +22,4 @@ public class Main extends Application{
 		viewHandler = new ViewHandler(viewModelFactory);
 		viewHandler.start(stage);
 	}
-
 }

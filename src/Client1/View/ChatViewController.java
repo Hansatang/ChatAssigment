@@ -28,7 +28,7 @@ public class ChatViewController
   @FXML public void sendMessage()
   {
     viewModelChat.sendMessage();
-    sentMessageTextField.clear();
+    sentMessageTextField.setText(null);
   }
 
   @FXML public void getUsers()

@@ -29,6 +29,23 @@ public class ServerSocketHandler implements Runnable
     this.connected = true;
   }
 
+  public void userConnected()
+  {
+    for (ServerSocketHandler client : server.getPool().getConnections())
+    {
+      try
+      {
+        client.out.writeObject(
+            new Message("Server>>>", username + " connected to he server ",
+                false));
+      }
+      catch (IOException e)
+      {
+        e.printStackTrace();
+      }
+    }
+  }
+
   public void run()
   {
     while (connected)
