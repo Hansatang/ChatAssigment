@@ -60,7 +60,7 @@ public class ViewHandler
       {
 
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("../FXML/chat2.fxml"));
+        loader.setLocation(getClass().getResource("../FXML/chat.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         chatViewController = loader.getController();
