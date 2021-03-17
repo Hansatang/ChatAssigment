@@ -1,8 +1,10 @@
 package Shared;
 
+import java.io.Serializable;
 import java.time.LocalTime;
 
-public class Message {
+public class Message implements Serializable
+{
 
 	private String user;
 	private String message;

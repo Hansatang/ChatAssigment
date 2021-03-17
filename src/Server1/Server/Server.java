@@ -42,11 +42,12 @@ public class Server implements Runnable
         String username = name.getUser();
         ObjectOutputStream out = new ObjectOutputStream(
             socket.getOutputStream());
-        ServerSocketHandler client = new ServerSocketHandler(username, socket, in, out,this);
-        pool.addConn(client);
-        client.sendMsg("Hello " + client.getUsername() + "! \n");
-        System.out.println("User " + client.getUsername() + " has been added");
-        Thread tr = new Thread(client);
+        ServerSocketHandler socketHandler = new ServerSocketHandler(username, socket,
+            in, out, this);
+        pool.addConn(socketHandler);
+        socketHandler.sendMsg("Hello " + socketHandler.getUsername() + "! \n");
+        System.out.println("User " + socketHandler.getUsername() + " has been added");
+        Thread tr = new Thread(socketHandler);
         tr.start();
       }
       catch (IOException | ClassNotFoundException e)
