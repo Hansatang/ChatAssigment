@@ -7,21 +7,32 @@ import javafx.beans.property.StringProperty;
 
 public class ViewModelLogin
 {
-    private StringProperty username;
-    private DataModel model;
-    private ViewHandler viewHandler;
+  private StringProperty username;
+  private DataModel model;
+  private ViewHandler viewHandler;
 
-    public ViewModelLogin(DataModel model )
+  public ViewModelLogin(DataModel model)
+  {
+    this.model = model;
+    username = new SimpleStringProperty();
+  }
+
+  public StringProperty usernameProperty()
+  {
+    return username;
+  }
+
+  public void startChat()
+  {
+    if (username.get().isEmpty())
     {
-        this.model=model;
-        username=new SimpleStringProperty();
-    }
+      model.createClient("No one");
 
-    public StringProperty usernameProperty() {
-        return username;
     }
-
-    public void startChat()
+    else
     {
+      model.createClient(username.get());
+
     }
+  }
 }
