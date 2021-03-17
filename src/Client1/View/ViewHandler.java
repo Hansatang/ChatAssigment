@@ -39,7 +39,7 @@ public class ViewHandler
         Parent root = loader.load();
         Scene scene = new Scene(root);
         loginViewController = loader.getController();
-        loginViewController.init(scene);
+        loginViewController.init(this,scene);
       }
       catch (IOException e)
       {
@@ -63,7 +63,7 @@ public class ViewHandler
         Parent root = loader.load();
         Scene scene = new Scene(root);
         chatViewController = loader.getController();
-        chatViewController.init(scene);
+        chatViewController.init(this,scene);
       }
       catch (IOException e)
       {

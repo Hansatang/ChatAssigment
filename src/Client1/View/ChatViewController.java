@@ -5,8 +5,10 @@ import javafx.scene.Scene;
 public class ChatViewController
 {
   private Scene scene;
-  public void init(Scene scene)
+  private ViewHandler viewHandler;
+  public void init(ViewHandler viewHandler,Scene scene)
   {
+    this.viewHandler=viewHandler;
     this.scene = scene;
   }
 
