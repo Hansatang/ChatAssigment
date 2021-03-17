@@ -43,7 +43,7 @@ public class ServerView
 
   @FXML public void startServer()
   {
-    label.setText("Server1.Server is running...");
+    label.setText("Server is running...");
     this.server = new Server(2910);
     tr1 = new Thread(server);
     tr1.start();
@@ -51,7 +51,7 @@ public class ServerView
 
   @FXML public void stopServer()
   {
-    label.setText("Server1.Server is turned off");
+    label.setText("Server is turned off");
     server.setRunning(false);
     server.closeServerSocket();
   }
