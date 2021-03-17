@@ -1,12 +1,10 @@
 package Server1.Server;
 
-import Server1.Domain.Message;
+import Shared.Message;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.HashSet;
-import java.util.Set;
 
 public class Server implements Runnable
 {

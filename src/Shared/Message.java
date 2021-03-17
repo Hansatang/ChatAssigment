@@ -1,4 +1,4 @@
-package Client1.Domain;
+package Shared;
 
 import java.time.LocalTime;
 
