@@ -53,9 +53,7 @@ public class ServerSocketHandler implements Runnable
       try
       {
         message = (Message) in.readObject();
-        System.out.println(1);
-        System.out.println(message.getMessage());
-        System.out.println(2);
+        System.out.println("Message"+message.getMessage());
         try
         {
           if (!message.isCommand())
@@ -69,6 +67,12 @@ public class ServerSocketHandler implements Runnable
           {
             if (message.getMessage().equals("exit"))
             {
+              System.out.println("LALA");
+              for (ServerSocketHandler client : server.getPool().getConnections())
+              {
+                client.out.writeObject(   new Message("Server>>>", message.getUser() + " has left the server ",
+                    false));
+              }
               close();
             }
             if (message.getMessage().equals("Users"))
@@ -100,7 +104,7 @@ public class ServerSocketHandler implements Runnable
       }
       catch (IOException | ClassNotFoundException e)
       {
-      //  System.out.println("No streams are incoming");
+        //    System.out.println("No streams are incoming");
       }
     }
   }
@@ -126,11 +130,15 @@ public class ServerSocketHandler implements Runnable
   {
     try
     {
+      System.out.println(5);
       this.connected = false;
+      System.out.println(6);
+
+      server.getPool().removeConn(this);
+      System.out.println(7);
       in.close();
       out.close();
       socket.close();
-      server.getPool().removeConn(this);
     }
     catch (IOException e)
     {

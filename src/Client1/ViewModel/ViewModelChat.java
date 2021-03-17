@@ -69,7 +69,14 @@ public class ViewModelChat
 
   public void closeChat()
   {
-    model.sendMessage(new Message(model.getUsername(), "exit", true));
+//    model.sendMessage(
+//        new Message("Server>>>", model.getUsername() + " has left the server ",
+//            false));
+
+    model.sendMessage(
+        new Message(model.getUsername(), "exit", true));
+
+
     model.decreateClient();
 
   }

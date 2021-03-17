@@ -19,19 +19,20 @@ public class ClientSocketHandler implements Runnable
     this.socket = socket;
     this.client = client;
 
+
   }
 
   @Override public void run()
   {
     try
     {
-      inputStream = new ObjectInputStream(socket.getInputStream());
+      this.inputStream = new ObjectInputStream(socket.getInputStream());
     }
     catch (IOException e)
     {
       e.printStackTrace();
     }
-    while (true)
+    while (client.isRunning())
     {
       try
       {
@@ -45,4 +46,6 @@ public class ClientSocketHandler implements Runnable
       }
     }
   }
+
+
 }
