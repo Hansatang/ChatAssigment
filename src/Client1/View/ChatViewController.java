@@ -21,8 +21,8 @@ public class ChatViewController
     this.viewModelChat = viewModelChat;
     sentMessageTextField.textProperty()
         .bindBidirectional(viewModelChat.messageProperty());
-    messagesTextArea.textProperty().bindBidirectional(
-        viewModelChat.chatProperty());
+    messagesTextArea.textProperty()
+        .bindBidirectional(viewModelChat.chatProperty());
   }
 
   @FXML public void sendMessage()
@@ -33,8 +33,7 @@ public class ChatViewController
 
   @FXML public void getUsers()
   {
-
+    viewModelChat.getUsers();
   }
-
 
 }
