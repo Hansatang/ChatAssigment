@@ -1,6 +1,7 @@
 package Client1.Networking;
 
 import Client1.MODEL.DataModelManager;
+import Client1.ViewModel.ViewModelLogin;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -16,9 +17,11 @@ public class Client implements ClientModel, Runnable, PropertyChangeListener
     private boolean running = true;
     private DataModelManager manager;
     private String name;
+    private ViewModelLogin viewModelLogin;
 
     public Client(DataModelManager manager) {
         this.manager = manager;
+
     }
 
     @Override
@@ -40,6 +43,6 @@ public class Client implements ClientModel, Runnable, PropertyChangeListener
 
     @Override public void setUsername(String name)
     {
-        this.name = name;
+        this.name =viewModelLogin.usernameProperty().getValue();
     }
 }
