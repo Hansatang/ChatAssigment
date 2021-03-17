@@ -46,4 +46,11 @@ public class ViewModelChat
         model.update();
 
     }
+
+
+
+  public StringProperty chatProperty()
+  {
+    return chat;
+  }
 }

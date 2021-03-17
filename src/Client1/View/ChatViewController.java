@@ -21,9 +21,9 @@ private TextArea messagesTextArea;
 
   public void init(ViewModelChat viewModelChat)
   {
-
-    sentMessageTextField.textProperty().bindBidirectional(viewModelChat.);
     this.viewModelChat=viewModelChat;
+    sentMessageTextField.textProperty().bindBidirectional(viewModelChat.chatProperty());
+
 
   }
 
