@@ -11,10 +11,9 @@ public class ViewModelLogin
     private DataModel model;
     private ViewHandler viewHandler;
 
-    public ViewModelLogin(DataModel model, ViewHandler viewHandler)
+    public ViewModelLogin(DataModel model )
     {
         this.model=model;
-        this.viewHandler=viewHandler;
         username=new SimpleStringProperty();
     }
 
