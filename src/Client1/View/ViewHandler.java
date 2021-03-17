@@ -19,6 +19,7 @@ public class ViewHandler
   public ViewHandler(ViewModelFactory viewModelFactory)
   {
     this.viewModelFactory = viewModelFactory;
+
   }
 
   public void start(Stage primaryStage)
