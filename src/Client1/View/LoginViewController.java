@@ -11,7 +11,6 @@ public class LoginViewController
   private ViewHandler viewHandler;
   private ViewModelLogin viewModelLogin;
 
-
   public void init(ViewHandler viewHandler,ViewModelLogin viewModelLogin,Scene scene)
   {
     this.viewHandler = viewHandler;
