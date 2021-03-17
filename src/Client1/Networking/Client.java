@@ -8,19 +8,19 @@ import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.net.Socket;
 
-public class Client implements ClientModel, Runnable, PropertyChangeListener
+public class Client implements ClientModel, PropertyChangeListener
 {
 
     private String hostname = "localhost";
-    private int port;
     private Socket socket;
     private boolean running = true;
     private DataModelManager manager;
     private String name;
-    private ViewModelLogin viewModelLogin;
 
-    public Client(DataModelManager manager) {
+
+    public Client(DataModelManager manager, String name) {
         this.manager = manager;
+        this.name=name;
 
     }
 
@@ -41,8 +41,4 @@ public class Client implements ClientModel, Runnable, PropertyChangeListener
 
     }
 
-    @Override public void setUsername(String name)
-    {
-        this.name =viewModelLogin.usernameProperty().getValue();
-    }
 }
