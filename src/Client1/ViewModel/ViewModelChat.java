@@ -51,9 +51,4 @@ public class ViewModelChat
     }
 
 
-
-  public StringProperty chatProperty()
-  {
-    return chat;
-  }
 }
