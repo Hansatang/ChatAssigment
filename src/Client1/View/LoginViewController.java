@@ -26,5 +26,6 @@ public class LoginViewController
 
   @FXML public void startChat()
   {
+    viewHandler.openChatView();
   }
 }

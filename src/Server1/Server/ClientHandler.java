@@ -41,7 +41,7 @@ public class ClientHandler implements Runnable
           {
             for (ClientHandler client : Server.clientList)
             {
-              client.out.writeObject(message.getMessage());
+              client.out.writeObject(message);
             }
           }
           else
@@ -85,7 +85,7 @@ public class ClientHandler implements Runnable
   {
     try
     {
-      out.writeObject(new Message("Server1.Server>>>", msg, false));
+      out.writeObject(new Message("Server>>>", msg, false));
     }
     catch (IOException e)
     {
