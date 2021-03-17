@@ -23,7 +23,5 @@ public class ViewModelLogin
 
     public void startChat()
     {
-        viewHandler.openChatView();
     }
-
 }
