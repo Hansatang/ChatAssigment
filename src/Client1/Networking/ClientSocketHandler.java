@@ -26,7 +26,7 @@ public class ClientSocketHandler implements Runnable
   {
     try
     {
-      this.inputStream = new ObjectInputStream(socket.getInputStream());
+      inputStream = new ObjectInputStream(socket.getInputStream());
     }
     catch (IOException e)
     {
@@ -42,7 +42,7 @@ public class ClientSocketHandler implements Runnable
       }
       catch (IOException | ClassNotFoundException e)
       {
-        e.printStackTrace();
+        System.out.println("Connection lost");
       }
     }
   }

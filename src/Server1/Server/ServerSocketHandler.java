@@ -53,7 +53,7 @@ public class ServerSocketHandler implements Runnable
       try
       {
         message = (Message) in.readObject();
-        System.out.println("Message"+message.getMessage());
+        System.out.println("Message "+message.getMessage());
         try
         {
           if (!message.isCommand())
@@ -67,6 +67,11 @@ public class ServerSocketHandler implements Runnable
           {
             if (message.getMessage().equals("exit"))
             {
+              for (ServerSocketHandler client : server.getPool().getConnections())
+              {
+                client.out.writeObject(new Message("Server>>>", username + " disconnected to he server ",
+                    false));
+              }
               close();
             }
             if (message.getMessage().equals("Users"))

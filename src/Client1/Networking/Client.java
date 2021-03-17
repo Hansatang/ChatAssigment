@@ -55,19 +55,7 @@ public class Client implements ClientModel, PropertyChangeListener
 
   }
 
-  public void deactivateUser()
-  {
-    running = false;
-    try
-    {
-      objectOutputStream.close();
-      socket.close();
-    }
-    catch (IOException e)
-    {
-      e.printStackTrace();
-    }
-  }
+
 
   @Override public void sendMsg(Message text)
   {
@@ -91,6 +79,19 @@ public class Client implements ClientModel, PropertyChangeListener
   {
     System.out.println("Client receive" + message);
     support.firePropertyChange("updated", null, message);
+  }
+  public void deactivateUser()
+  {
+    running = false;
+    try
+    {
+      objectOutputStream.close();
+      socket.close();
+    }
+    catch (IOException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   public boolean isRunning()
