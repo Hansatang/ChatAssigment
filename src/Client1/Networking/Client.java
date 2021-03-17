@@ -6,6 +6,7 @@ import Shared.Message;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -20,10 +21,13 @@ public class Client implements ClientModel, PropertyChangeListener
   private DataModelManager manager;
   private String name;
 
+  private PropertyChangeSupport support;
+
   public Client(DataModelManager manager, String name)
   {
     this.manager = manager;
     this.name = name;
+    support = new PropertyChangeSupport(this);
 
     try
     {
@@ -59,6 +63,18 @@ public class Client implements ClientModel, PropertyChangeListener
     catch (IOException e)
     {
       e.printStackTrace();
+    }
+  }
+
+  @Override
+  public void addPropertyChangeListener(String name, PropertyChangeListener listener) {
+    if (name == null) /** all events  * */
+    {
+      support.addPropertyChangeListener(listener);
+    }
+    else /** a specific event  * */
+    {
+      support.addPropertyChangeListener(name, listener);
     }
   }
 }

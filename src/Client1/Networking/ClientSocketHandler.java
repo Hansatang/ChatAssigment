@@ -1,13 +1,14 @@
 package Client1.Networking;
 
+import Client1.PropertyChange.PropertyChangeSubject;
 import Shared.Message;
 
+import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
-public class ClientSocketHandler implements Runnable
-{
+public class ClientSocketHandler implements Runnable, PropertyChangeSubject {
   private ObjectInputStream inputStream;
   private Socket socket;
   private Client client;
@@ -40,5 +41,10 @@ public class ClientSocketHandler implements Runnable
         e.printStackTrace();
       }
     }
+  }
+
+  @Override
+  public void addPropertyChangeListener(String name, PropertyChangeListener listener) {
+
   }
 }
