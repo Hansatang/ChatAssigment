@@ -41,8 +41,8 @@ public class Client implements ClientModel, Runnable, PropertyChangeListener
 
     }
 
-    @Override public void setUsername(String name)
+    @Override public void setUsername()
     {
-        this.name =viewModelLogin.usernameProperty().getValue();
+        name =viewModelLogin.usernameProperty().getValue();
     }
 }
