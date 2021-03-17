@@ -18,12 +18,13 @@ public class ViewModelLogin
         username=new SimpleStringProperty();
     }
 
-    public ViewModelLogin(StringProperty username) {
-        this.username = username;
+    public StringProperty usernameProperty() {
+        return username;
     }
 
     public void startChat()
     {
         viewHandler.openChatView();
     }
+
 }
