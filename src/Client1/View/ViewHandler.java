@@ -54,7 +54,7 @@ public class ViewHandler
   public void openChatView() {
 
     FXMLLoader loader = new FXMLLoader();
-    loader.setLocation(getClass().getResource("../FXML/chat2.fxml"));
+    loader.setLocation(getClass().getResource("../FXML/chat.fxml"));
     Parent root = null;
     try {
       root = loader.load();
