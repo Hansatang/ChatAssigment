@@ -7,5 +7,5 @@ import java.beans.PropertyChangeListener;
 public interface ClientModel
 {
 void sendMsg(Message text);
-  public void addPropertyChangeListener(String name, PropertyChangeListener listener);
+void addPropertyChangeListener(String name, PropertyChangeListener listener);
 }

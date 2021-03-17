@@ -100,7 +100,7 @@ public class ServerSocketHandler implements Runnable
       }
       catch (IOException | ClassNotFoundException e)
       {
-        System.out.println("No streams are incoming");
+      //  System.out.println("No streams are incoming");
       }
     }
   }

@@ -22,4 +22,14 @@ public class Main extends Application{
 		viewHandler = new ViewHandler(viewModelFactory);
 		viewHandler.start(stage);
 	}
+
+	@Override
+	public void stop() {
+		try {
+			viewModelFactory.getViewModelChat().closeChat();
+		}
+		catch (NullPointerException e) {
+			System.out.println("Everything closed");
+		}
+	}
 }

@@ -41,6 +41,11 @@ public class DataModelManager implements DataModel
     support.addPropertyChangeListener(name, listener);
   }
 
+  @Override public void decreateClient()
+  {
+    client.deactivateUser();
+  }
+
   @Override public String getUsername()
   {
     return name;

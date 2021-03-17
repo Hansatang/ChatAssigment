@@ -53,6 +53,20 @@ public class Client implements ClientModel, PropertyChangeListener
 
   }
 
+  public void deactivateUser()
+  {
+    running = false;
+    try
+    {
+      objectOutputStream.close();
+      socket.close();
+    }
+    catch (IOException e)
+    {
+      e.printStackTrace();
+    }
+  }
+
   @Override public void sendMsg(Message text)
   {
     try

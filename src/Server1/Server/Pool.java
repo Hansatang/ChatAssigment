@@ -18,7 +18,14 @@ public class Pool
   }
   public synchronized void  removeConn(ServerSocketHandler ssh)
   {
-    connections.remove(ssh);
+    for (int i = 0; i <connections.size() ; i++)
+    {
+      System.out.println(connections.size());
+      if (connections.get(i) ==ssh){
+        connections.remove(ssh);
+      }
+    }
+    System.out.println(connections.size());
   }
 
   public List<ServerSocketHandler> getConnections()

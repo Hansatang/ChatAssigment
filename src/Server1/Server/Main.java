@@ -21,7 +21,7 @@ public class Main extends Application
     }
     catch (NullPointerException e)
     {
-      System.out.println("Server1.Server closed");
+      System.out.println("Server closed");
     }
   }
 }
