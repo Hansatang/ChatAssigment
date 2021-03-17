@@ -12,13 +12,15 @@ public class LoginViewController
 {
 
   private ViewModelLogin viewModelLogin;
+  private ViewHandler viewHandler;
 
   @FXML
   private TextField usernameTextField;
 
-  public void init(ViewModelLogin viewModelLogin)
+  public void init(ViewModelLogin viewModelLogin,ViewHandler viewHandler)
   {
     this.viewModelLogin = viewModelLogin;
+    this.viewHandler =viewHandler;
 
     usernameTextField.textProperty().bindBidirectional(viewModelLogin.usernameProperty());
   }
@@ -29,5 +31,6 @@ public class LoginViewController
   @FXML public void startChat(javafx.event.ActionEvent actionEvent)
   {
     viewModelLogin.startChat();
+    viewHandler.openChatView();
   }
 }
