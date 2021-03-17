@@ -12,9 +12,8 @@ public class ViewModelChat
     private StringProperty chat;
     private DataModel model;
 
-    public ViewModelChat( ViewHandler viewHandler) {
+    public ViewModelChat( DataModel dataModel) {
 
-        this.viewHandler = viewHandler;
         chat=new SimpleStringProperty();
         message=new SimpleStringProperty();
     }
