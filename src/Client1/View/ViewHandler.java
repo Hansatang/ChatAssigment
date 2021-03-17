@@ -1,6 +1,6 @@
 package Client1.View;
 
-import ViewModel.ViewModelFactory;
+import Client1.ViewModel.ViewModelFactory;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,8 +12,8 @@ public class ViewHandler
 {
 
 	private Stage stage;
-	private LoginView loginView;
-	private ChatView chatView;
+	private LoginViewController loginViewController;
+	private ChatViewController chatViewController;
 	private ViewModelFactory viewModelFactory;
 
 	public ViewHandler(ViewModelFactory viewModelFactory) {
@@ -27,40 +27,42 @@ public class ViewHandler
 	}
 
 	public void openLoginView() {
-		if (loginView == null) {
+		if (loginViewController == null) {
 			try{
 				FXMLLoader loader = new FXMLLoader();
 				loader.setLocation(getClass().getResource("../FXML/login.fxml"));
 				Parent root = loader.load();
 				Scene scene = new Scene(root);
-		//		loginView = loader.getController();
-		//		loginView.init(??);
+		//		loginViewController = loader.getController();
+		//		loginViewController.init(??);
 			}
 			catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-		stage.setScene(loginView.getScene());
-		stage.setTitle(loginView.getTitle());
+		stage.setScene(loginViewController.getScene());
+		stage.setTitle("Login View");
 		stage.show();
 	}
 
 	public void openChatView() {
-		if(chatView == null) {
+		if(chatViewController == null) {
 			try {
+
 				FXMLLoader loader = new FXMLLoader();
 				loader.setLocation(getClass().getResource("../FXML/chat2.fxml"));
 				Parent root = loader.load();
 				Scene scene = new Scene(root);
-			//	chatView = loader.getController();
-			//	chatView.init(???);
+			//	chatViewController = loader.getController();
+			//	chatViewController.init(???);
 			}
 			catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-		stage.setScene(chatView.getScene());
-		stage.setTitle(chatView.getTitle());
+		scene = new Scene(root);
+		stage.setScene(chatViewController.getScene());
+		stage.setTitle("Chat view");
 		stage.show();
 	}
 
