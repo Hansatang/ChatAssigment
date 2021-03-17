@@ -30,4 +30,6 @@ public class Client implements ClientModel, PropertyChangeListener
 
     }
 
+    public void sendMessage() {
+    }
 }

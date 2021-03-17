@@ -14,7 +14,7 @@ public class DataModelManager implements DataModel
 
   @Override public void sendMessage(String text)
   {
-      Message message=new Message(client);
+      client.sendMessage();
 
   }
 
