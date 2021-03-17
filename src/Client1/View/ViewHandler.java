@@ -29,51 +29,49 @@ public class ViewHandler
     openLoginView();
   }
 
-  public void openLoginView()
-  {
-    if (loginViewController == null)
-    {
-      try
-      {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("../FXML/login.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        loginViewController = loader.getController();
-        loginViewController.init(this,viewModelFactory.getViewModelLogin(),scene);
-      }
-      catch (IOException e)
-      {
-        e.printStackTrace();
-      }
+  public void openLoginView() {
+
+
+    FXMLLoader loader = new FXMLLoader();
+    loader.setLocation(getClass().getResource("../FXML/login.fxml"));
+    Parent root = null;
+    try {
+      root = loader.load();
+
     }
-    stage.setScene(loginViewController.getScene());
+    catch(IOException e) {
+      e.printStackTrace();
+
+    }
+    LoginViewController viewController = loader.getController();
+    viewController.init(viewModelFactory.getViewModelLogin());
     stage.setTitle("Login View");
+    Scene scene = new Scene(root);
+    stage.setScene(scene);
     stage.show();
   }
 
-  public void openChatView()
-  {
-    if (chatViewController == null)
-    {
-      try
-      {
+  public void openChatView() {
 
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("../FXML/chat.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        chatViewController = loader.getController();
-        chatViewController.init(this,viewModelFactory.getViewModelChat(),scene);
-      }
-      catch (IOException e)
-      {
-        e.printStackTrace();
-      }
+    FXMLLoader loader = new FXMLLoader();
+    loader.setLocation(getClass().getResource("../FXML/chat2.fxml"));
+    Parent root = null;
+    try {
+      root = loader.load();
+
+    } catch (IOException e) {
+      e.printStackTrace();
+
     }
-    stage.setScene(chatViewController.getScene());
-    stage.setTitle("Chat view");
+    ChatViewController viewController = loader.getController();
+    viewController.init(viewModelFactory.getViewModelChat());
+    stage.setTitle("Chat View");
+    Scene scene = new Scene(root);
+    stage.setScene(scene);
     stage.show();
   }
 
 }
+
+
+
