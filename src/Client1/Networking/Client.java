@@ -1,5 +1,5 @@
 package Client1.Networking;
 
-public class Client
+public class Client implements ClientModel
 {
 }
