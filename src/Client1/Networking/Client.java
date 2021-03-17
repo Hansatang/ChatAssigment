@@ -30,12 +30,18 @@ public class Client implements ClientModel, PropertyChangeListener
       this.socket = new Socket("localhost", 2910);
       this.objectOutputStream = new ObjectOutputStream(
           socket.getOutputStream());
+      ClientSocketHandler clientSocketHandler =  new ClientSocketHandler(socket, this);
+
+      Thread thread =  new Thread(clientSocketHandler);
+      thread.setDaemon(true);
+      thread.start();
     }
     catch (IOException e)
     {
       throw new RuntimeException("Unable to connect to the server");
     }
     sendMsg(new Message(name, "Fuck me", false));
+
   }
 
   @Override public void propertyChange(PropertyChangeEvent evt)

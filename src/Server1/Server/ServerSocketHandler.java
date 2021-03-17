@@ -36,7 +36,9 @@ public class ServerSocketHandler implements Runnable
       try
       {
         message = (Message) in.readObject();
+        System.out.println(1);
         System.out.println(message.getMessage());
+        System.out.println(2);
         try
         {
           if (!message.isCommand())
