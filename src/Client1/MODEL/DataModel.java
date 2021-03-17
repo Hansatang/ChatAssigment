@@ -3,10 +3,15 @@ package Client1.MODEL;
 import Shared.Message;
 import javafx.scene.Scene;
 
-public interface DataModel {
-    void sendMessage(Message text);
-    void update();
-    void createClient(String name);
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
-    String getUsername();
+public interface DataModel
+{
+  void sendMessage(Message text);
+  void update(PropertyChangeEvent propertyChangeEvent);
+  void createClient(String name);
+  public void addPropertyChangeListener(String name, PropertyChangeListener listener);
+
+  String getUsername();
 }

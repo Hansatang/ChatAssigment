@@ -1,15 +1,16 @@
 package Client1.ViewModel;
 
 import Client1.MODEL.DataModel;
-import Client1.View.ViewHandler;
 import Shared.Message;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+
+import java.beans.PropertyChangeEvent;
 
 public class ViewModelChat
 {
   private StringProperty message;
-  private ViewHandler viewHandler;
   private StringProperty chat;
   private DataModel model;
 
@@ -18,6 +19,8 @@ public class ViewModelChat
     this.model = model;
     chat = new SimpleStringProperty();
     message = new SimpleStringProperty();
+    model.addPropertyChangeListener("updated", this::updated);
+
   }
 
   public StringProperty messageProperty()
@@ -50,10 +53,18 @@ public class ViewModelChat
     model.sendMessage(new Message(model.getUsername(), "Users", true));
   }
 
-  public void update()
+  public void updated(PropertyChangeEvent evt)
   {
-    model.update();
-
+    Platform.runLater(() -> {
+      if (chat.getValue() == null)
+      {
+        chat.setValue(evt.getNewValue().toString());
+      }
+      else
+      {
+        chat.setValue(chat.getValue() + "\n" + evt.getNewValue().toString());
+      }
+    });
   }
 
 }
