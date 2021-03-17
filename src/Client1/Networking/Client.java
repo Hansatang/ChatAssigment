@@ -2,6 +2,7 @@ package Client1.Networking;
 
 import Client1.MODEL.DataModelManager;
 import Client1.ViewModel.ViewModelLogin;
+import Shared.Message;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -30,4 +31,8 @@ public class Client implements ClientModel, PropertyChangeListener
 
     }
 
+    @Override public void sendMsg(Message text)
+    {
+
+    }
 }
