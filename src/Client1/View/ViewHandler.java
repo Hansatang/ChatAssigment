@@ -44,7 +44,7 @@ public class ViewHandler
 
     }
     LoginViewController viewController = loader.getController();
-    viewController.init(viewModelFactory.getViewModelLogin());
+    viewController.init(viewModelFactory.getViewModelLogin(),this);
     stage.setTitle("Login View");
     Scene scene = new Scene(root);
     stage.setScene(scene);
