@@ -67,12 +67,6 @@ public class ServerSocketHandler implements Runnable
           {
             if (message.getMessage().equals("exit"))
             {
-              System.out.println("LALA");
-              for (ServerSocketHandler client : server.getPool().getConnections())
-              {
-                client.out.writeObject(   new Message("Server>>>", message.getUser() + " has left the server ",
-                    false));
-              }
               close();
             }
             if (message.getMessage().equals("Users"))
@@ -130,12 +124,9 @@ public class ServerSocketHandler implements Runnable
   {
     try
     {
-      System.out.println(5);
-      this.connected = false;
-      System.out.println(6);
 
+      this.connected = false;
       server.getPool().removeConn(this);
-      System.out.println(7);
       in.close();
       out.close();
       socket.close();

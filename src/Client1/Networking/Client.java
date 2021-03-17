@@ -23,7 +23,6 @@ public class Client implements ClientModel, PropertyChangeListener
   private DataModelManager manager;
   private String name;
   private PropertyChangeSupport support;
- private ClientSocketHandler clientSocketHandler;
 
   public Client(DataModelManager manager, String name)
   {
@@ -36,7 +35,7 @@ public class Client implements ClientModel, PropertyChangeListener
       this.socket = new Socket("localhost", 2910);
       this.objectOutputStream = new ObjectOutputStream(
           socket.getOutputStream());
-       clientSocketHandler = new ClientSocketHandler(socket,
+      ClientSocketHandler clientSocketHandler = new ClientSocketHandler(socket,
           this);
 
       Thread thread = new Thread(clientSocketHandler);
@@ -58,8 +57,7 @@ public class Client implements ClientModel, PropertyChangeListener
 
   public void deactivateUser()
   {
-
-    this.running = false;
+    running = false;
     try
     {
       objectOutputStream.close();
