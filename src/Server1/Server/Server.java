@@ -12,14 +12,14 @@ public class Server implements Runnable
 {
   private ServerSocket serverSocket;
   private Socket socket;
+  private Pool pool = new Pool();
   private boolean running = true;
-  public static Set<ServerSocketHandler> clientList;
+
   public int port;
 
   public Server(int port)
   {
     this.port = port;
-    clientList = new HashSet<ServerSocketHandler>();
   }
 
   @Override public void run()
@@ -44,8 +44,8 @@ public class Server implements Runnable
         String username = name.getUser();
         ObjectOutputStream out = new ObjectOutputStream(
             socket.getOutputStream());
-        ServerSocketHandler client = new ServerSocketHandler(username, socket, in, out);
-        clientList.add(client);
+        ServerSocketHandler client = new ServerSocketHandler(username, socket, in, out,this);
+        pool.addConn(client);
         client.sendMsg("Hello " + client.getUsername() + "! \n");
         System.out.println("User " + client.getUsername() + " has been added");
         Thread tr = new Thread(client);
@@ -75,11 +75,10 @@ public class Server implements Runnable
     this.running = running;
   }
 
-  public static void remove(ServerSocketHandler client)
+  public Pool getPool()
   {
-    clientList.remove(client);
+    return pool;
   }
-
 }
 
 

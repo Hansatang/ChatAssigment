@@ -14,15 +14,17 @@ public class ServerSocketHandler implements Runnable
 
   private String username;
   private Message message;
+  private Server server;
   private boolean connected;
 
   public ServerSocketHandler(String name, Socket socket, ObjectInputStream in,
-      ObjectOutputStream out)
+      ObjectOutputStream out,Server server)
   {
     this.socket = socket;
     this.in = in;
     this.out = out;
     this.username = name;
+    this.server=server;
 
     this.connected = true;
   }
@@ -39,7 +41,7 @@ public class ServerSocketHandler implements Runnable
         {
           if (!message.isCommand())
           {
-            for (ServerSocketHandler client : Server.clientList)
+            for (ServerSocketHandler client : server.getPool().getConnections())
             {
               client.out.writeObject(message);
             }
@@ -53,17 +55,17 @@ public class ServerSocketHandler implements Runnable
             if (message.getMessage().equals("Users"))
             {
               String str = "";
-              for (ServerSocketHandler client : Server.clientList)
+              for (ServerSocketHandler client : server.getPool().getConnections())
               {
                 str += client.username + ", ";
               }
               System.out.println(str);
 
-              for (ServerSocketHandler client : Server.clientList)
+              for (ServerSocketHandler client : server.getPool().getConnections())
               {
                 if (client.username.equals(username))
                 {
-                  client.sendMsg("There is  " + Server.clientList.size()
+                  client.sendMsg("There is  " + server.getPool().getConnections().size()
                       + " user connected \n" + str);
                 }
               }
@@ -91,7 +93,6 @@ public class ServerSocketHandler implements Runnable
     {
       e.printStackTrace();
     }
-    ;
   }
 
   public String getUsername()
@@ -107,8 +108,7 @@ public class ServerSocketHandler implements Runnable
       in.close();
       out.close();
       socket.close();
-      Server.remove(this);
-
+      server.getPool().removeConn(this);
     }
     catch (IOException e)
     {
