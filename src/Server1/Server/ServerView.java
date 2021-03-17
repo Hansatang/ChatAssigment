@@ -27,7 +27,7 @@ public class ServerView
     {
       this.stage = stage;
       FXMLLoader loader = new FXMLLoader();
-      loader.setLocation(getClass().getResource("../Server1.FXML/server.fxml"));
+      loader.setLocation(getClass().getResource("../FXML/server.fxml"));
       Parent root = loader.load();
       Scene scene = new Scene(root);
       stage.setScene(scene);
