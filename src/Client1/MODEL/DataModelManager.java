@@ -22,6 +22,11 @@ public class DataModelManager implements DataModel
 
   @Override public void createClient()
   {
-    client = new Client(2910);
+    client = new Client(this);
+  }
+
+  @Override public void setUserName(String name)
+  {
+    client.setUsername(name);
   }
 }

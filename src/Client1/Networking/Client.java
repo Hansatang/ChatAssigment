@@ -1,5 +1,7 @@
 package Client1.Networking;
 
+import Client1.MODEL.DataModelManager;
+
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
@@ -12,9 +14,11 @@ public class Client implements ClientModel, Runnable, PropertyChangeListener
     private int port;
     private Socket socket;
     private boolean running = true;
+    private DataModelManager manager;
+    private String name;
 
-    public Client(int port) {
-        this.port = port;
+    public Client(DataModelManager manager) {
+        this.manager = manager;
     }
 
     @Override
@@ -32,5 +36,10 @@ public class Client implements ClientModel, Runnable, PropertyChangeListener
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
 
+    }
+
+    @Override public void setUsername(String name)
+    {
+        this.name = name;
     }
 }
