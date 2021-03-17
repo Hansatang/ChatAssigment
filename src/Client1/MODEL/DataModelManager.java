@@ -1,4 +1,4 @@
 package Client1.MODEL;
 
-public class DataModelManager {
+public class DataModelManager implements DataModel {
 }
