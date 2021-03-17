@@ -31,7 +31,6 @@ public class ViewModelLogin
     else
     {
       model.createClient(username.get());
-
     }
   }
 }
