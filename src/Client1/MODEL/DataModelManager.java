@@ -14,7 +14,7 @@ public class DataModelManager implements DataModel
 
   @Override public void sendMessage(String text)
   {
-      Message message=new Message(client.)
+      Message message=new Message(client);
 
   }
 
@@ -29,12 +29,4 @@ public class DataModelManager implements DataModel
 
   }
 
-  @Override public void setUserName(String name)
-  {
-    client.setUsername(name);
-  }
-
-  public void activateClient(){
-    client.activate();
-  }
 }

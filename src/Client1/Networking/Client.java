@@ -24,17 +24,6 @@ public class Client implements ClientModel, PropertyChangeListener
 
     }
 
-    @Override
-    public void run() {
-        try {
-            socket = new Socket(hostname, port);
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-        while(running){
-
-        }
-    }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
