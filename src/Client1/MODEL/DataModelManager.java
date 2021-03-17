@@ -10,11 +10,12 @@ public class DataModelManager implements DataModel
 {
 
   private Client client;
+  private String name;
   private PropertyChangeSupport support = new PropertyChangeSupport(this);
 
-  @Override public void sendMessage(String text)
+  @Override public void sendMessage(Message text)
   {
-      Message message=new Message(client);
+    client.sendMsg(text);
 
   }
 
@@ -25,8 +26,13 @@ public class DataModelManager implements DataModel
 
   @Override public void createClient(String name)
   {
-    client = new Client(this,name);
+    client = new Client(this, name);
+    this.name = name;
+  }
 
+  @Override public String getUsername()
+  {
+    return name;
   }
 
 }
