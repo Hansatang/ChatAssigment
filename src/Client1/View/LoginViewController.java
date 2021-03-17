@@ -4,12 +4,16 @@ import Client1.ViewModel.ViewModelLogin;
 
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 
 public class LoginViewController
 {
   private Scene scene;
   private ViewHandler viewHandler;
   private ViewModelLogin viewModelLogin;
+  @FXML TextField username;
+
+
   public void init(ViewHandler viewHandler,ViewModelLogin viewModelLogin,Scene scene)
   {
     this.viewHandler = viewHandler;
@@ -24,5 +28,9 @@ public class LoginViewController
 
   @FXML public void startChat()
   {
+
+    viewHandler.openChatView();
+
+
   }
 }
