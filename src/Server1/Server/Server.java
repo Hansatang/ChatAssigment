@@ -13,13 +13,13 @@ public class Server implements Runnable
   private ServerSocket serverSocket;
   private Socket socket;
   private boolean running = true;
-  public static Set<ClientHandler> clientList;
+  public static Set<ServerSocketHandler> clientList;
   public int port;
 
   public Server(int port)
   {
     this.port = port;
-    clientList = new HashSet<ClientHandler>();
+    clientList = new HashSet<ServerSocketHandler>();
   }
 
   @Override public void run()
@@ -44,7 +44,7 @@ public class Server implements Runnable
         String username = name.getUser();
         ObjectOutputStream out = new ObjectOutputStream(
             socket.getOutputStream());
-        ClientHandler client = new ClientHandler(username, socket, in, out);
+        ServerSocketHandler client = new ServerSocketHandler(username, socket, in, out);
         clientList.add(client);
         client.sendMsg("Hello " + client.getUsername() + "! \n");
         System.out.println("User " + client.getUsername() + " has been added");
@@ -75,7 +75,7 @@ public class Server implements Runnable
     this.running = running;
   }
 
-  public static void remove(ClientHandler client)
+  public static void remove(ServerSocketHandler client)
   {
     clientList.remove(client);
   }

@@ -5,7 +5,7 @@ import Server1.Domain.Message;
 import java.io.*;
 import java.net.Socket;
 
-public class ClientHandler implements Runnable
+public class ServerSocketHandler implements Runnable
 {
 
   private Socket socket;
@@ -16,7 +16,7 @@ public class ClientHandler implements Runnable
   private Message message;
   private boolean connected;
 
-  public ClientHandler(String name, Socket socket, ObjectInputStream in,
+  public ServerSocketHandler(String name, Socket socket, ObjectInputStream in,
       ObjectOutputStream out)
   {
     this.socket = socket;
@@ -39,7 +39,7 @@ public class ClientHandler implements Runnable
         {
           if (!message.isCommand())
           {
-            for (ClientHandler client : Server.clientList)
+            for (ServerSocketHandler client : Server.clientList)
             {
               client.out.writeObject(message);
             }
@@ -53,13 +53,13 @@ public class ClientHandler implements Runnable
             if (message.getMessage().equals("Users"))
             {
               String str = "";
-              for (ClientHandler client : Server.clientList)
+              for (ServerSocketHandler client : Server.clientList)
               {
                 str += client.username + ", ";
               }
               System.out.println(str);
 
-              for (ClientHandler client : Server.clientList)
+              for (ServerSocketHandler client : Server.clientList)
               {
                 if (client.username.equals(username))
                 {
