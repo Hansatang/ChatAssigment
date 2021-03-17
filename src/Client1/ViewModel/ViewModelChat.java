@@ -15,7 +15,6 @@ public class ViewModelChat
 
   public ViewModelChat(DataModel model)
   {
-
     this.model = model;
     chat = new SimpleStringProperty();
     message = new SimpleStringProperty();
