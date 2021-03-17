@@ -24,10 +24,9 @@ public class ViewModelLogin
 
   public void startChat()
   {
-    if (username.get().isEmpty())
+    if (username.get() == null)
     {
       model.createClient("No one");
-
     }
     else
     {

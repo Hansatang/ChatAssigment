@@ -31,7 +31,7 @@ public class ServerView
       Parent root = loader.load();
       Scene scene = new Scene(root);
       stage.setScene(scene);
-      stage.setTitle("Server1/Server");
+      stage.setTitle("Server");
       stage.show();
     }
     catch (IOException e)

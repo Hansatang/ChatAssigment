@@ -18,13 +18,13 @@ public class ServerSocketHandler implements Runnable
   private boolean connected;
 
   public ServerSocketHandler(String name, Socket socket, ObjectInputStream in,
-      ObjectOutputStream out,Server server)
+      ObjectOutputStream out, Server server)
   {
     this.socket = socket;
     this.in = in;
     this.out = out;
     this.username = name;
-    this.server=server;
+    this.server = server;
 
     this.connected = true;
   }
@@ -55,18 +55,21 @@ public class ServerSocketHandler implements Runnable
             if (message.getMessage().equals("Users"))
             {
               String str = "";
-              for (ServerSocketHandler client : server.getPool().getConnections())
+              for (ServerSocketHandler client : server.getPool()
+                  .getConnections())
               {
                 str += client.username + ", ";
               }
               System.out.println(str);
 
-              for (ServerSocketHandler client : server.getPool().getConnections())
+              for (ServerSocketHandler client : server.getPool()
+                  .getConnections())
               {
                 if (client.username.equals(username))
                 {
-                  client.sendMsg("There is  " + server.getPool().getConnections().size()
-                      + " user connected \n" + str);
+                  client.sendMsg(
+                      "There is  " + server.getPool().getConnections().size()
+                          + " user connected \n" + str);
                 }
               }
             }
