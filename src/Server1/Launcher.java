@@ -1,4 +1,6 @@
-import Server.Main;
+package Server1;
+
+import Server1.Server.Main;
 import javafx.application.Application;
 
 public class Launcher

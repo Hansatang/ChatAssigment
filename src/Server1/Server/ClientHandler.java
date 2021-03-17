@@ -1,6 +1,6 @@
-package Server;
+package Server1.Server;
 
-import Domain.Message;
+import Server1.Domain.Message;
 
 import java.io.*;
 import java.net.Socket;
@@ -85,7 +85,7 @@ public class ClientHandler implements Runnable
   {
     try
     {
-      out.writeObject(new Message("Server>>>", msg, false));
+      out.writeObject(new Message("Server1.Server>>>", msg, false));
     }
     catch (IOException e)
     {

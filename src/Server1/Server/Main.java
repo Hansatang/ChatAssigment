@@ -1,4 +1,4 @@
-package Server;
+package Server1.Server;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -21,7 +21,7 @@ public class Main extends Application
     }
     catch (NullPointerException e)
     {
-      System.out.println("Server closed");
+      System.out.println("Server1.Server closed");
     }
   }
 }
