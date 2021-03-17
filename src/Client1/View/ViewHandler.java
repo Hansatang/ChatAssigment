@@ -4,6 +4,7 @@ import Client1.ViewModel.ViewModelFactory;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -68,7 +69,13 @@ public class ViewHandler
     stage.setTitle("Chat View");
     Scene scene = new Scene(root);
     stage.setScene(scene);
+    scene.setOnKeyPressed( event -> {
+      if( event.getCode() == KeyCode.ENTER ) {
+        viewController.sendMessage();
+      }
+    } );
     stage.show();
+
   }
 
 }

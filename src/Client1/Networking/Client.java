@@ -31,8 +31,11 @@ public class Client implements ClientModel, PropertyChangeListener
 
     }
 
-    @Override public void sendMsg(Message text)
-    {
+    public void sendMessage(Message text) {
+    }
+
+    @Override
+    public void sendMsg(Message text) {
 
     }
 }
