@@ -1,6 +1,6 @@
 package Client1.ViewModel;
 
-import Client1.MODEL.DataModelManager;
+import Client1.MODEL.DataModel;
 import Client1.View.ViewHandler;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -8,10 +8,10 @@ import javafx.beans.property.StringProperty;
 public class ViewModelLogin
 {
     private StringProperty username;
-    private DataModelManager model;
+    private DataModel model;
     private ViewHandler viewHandler;
 
-    public ViewModelLogin(DataModelManager model, ViewHandler viewHandler)
+    public ViewModelLogin(DataModel model, ViewHandler viewHandler)
     {
         this.model=model;
         this.viewHandler=viewHandler;
