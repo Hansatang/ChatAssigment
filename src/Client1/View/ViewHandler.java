@@ -11,59 +11,68 @@ import java.io.IOException;
 public class ViewHandler
 {
 
-	private Stage stage;
-	private LoginViewController loginViewController;
-	private ChatViewController chatViewController;
-	private ViewModelFactory viewModelFactory;
+  private Stage stage;
+  private LoginViewController loginViewController;
+  private ChatViewController chatViewController;
+  private ViewModelFactory viewModelFactory;
 
-	public ViewHandler(ViewModelFactory viewModelFactory) {
-		this.viewModelFactory = viewModelFactory;
-	}
+  public ViewHandler(ViewModelFactory viewModelFactory)
+  {
+    this.viewModelFactory = viewModelFactory;
+  }
 
-	public void start(Stage primaryStage) {
-		this.stage = primaryStage;
-		stage.setResizable(false);
-		openLoginView();
-	}
+  public void start(Stage primaryStage)
+  {
+    this.stage = primaryStage;
+    stage.setResizable(false);
+    openLoginView();
+  }
 
-	public void openLoginView() {
-		if (loginViewController == null) {
-			try{
-				FXMLLoader loader = new FXMLLoader();
-				loader.setLocation(getClass().getResource("../FXML/login.fxml"));
-				Parent root = loader.load();
-				Scene scene = new Scene(root);
-		//		loginViewController = loader.getController();
-		//		loginViewController.init(??);
-			}
-			catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		stage.setScene(loginViewController.getScene());
-		stage.setTitle("Login View");
-		stage.show();
-	}
+  public void openLoginView()
+  {
+    if (loginViewController == null)
+    {
+      try
+      {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../FXML/login.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        loginViewController = loader.getController();
+        loginViewController.init(scene);
+      }
+      catch (IOException e)
+      {
+        e.printStackTrace();
+      }
+    }
+    stage.setScene(loginViewController.getScene());
+    stage.setTitle("Login View");
+    stage.show();
+  }
 
-	public void openChatView() {
-		if(chatViewController == null) {
-			try {
+  public void openChatView()
+  {
+    if (chatViewController == null)
+    {
+      try
+      {
 
-				FXMLLoader loader = new FXMLLoader();
-				loader.setLocation(getClass().getResource("../FXML/chat2.fxml"));
-				Parent root = loader.load();
-				Scene scene = new Scene(root);
-			//	chatViewController = loader.getController();
-			//	chatViewController.init(???);
-			}
-			catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		scene = new Scene(root);
-		stage.setScene(chatViewController.getScene());
-		stage.setTitle("Chat view");
-		stage.show();
-	}
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../FXML/chat2.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        chatViewController = loader.getController();
+        chatViewController.init(scene);
+      }
+      catch (IOException e)
+      {
+        e.printStackTrace();
+      }
+    }
+    stage.setScene(chatViewController.getScene());
+    stage.setTitle("Chat view");
+    stage.show();
+  }
 
 }
