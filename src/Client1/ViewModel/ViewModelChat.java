@@ -12,8 +12,9 @@ public class ViewModelChat
     private StringProperty chat;
     private DataModel model;
 
-    public ViewModelChat( DataModel dataModel) {
+    public ViewModelChat(DataModel model) {
 
+        this.model=model;
         chat=new SimpleStringProperty();
         message=new SimpleStringProperty();
     }
@@ -24,8 +25,10 @@ public class ViewModelChat
     }
 
 
-    public void setChat(String chat) {
-        this.chat.set(chat);
+
+
+    public StringProperty chatProperty() {
+        return chat;
     }
 
     public void sendMessage()
