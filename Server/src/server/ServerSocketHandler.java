@@ -1,4 +1,4 @@
-package Server;
+package server;
 
 import model.Message;
 import utility.ServerOperationModel;
@@ -99,10 +99,10 @@ public class ServerSocketHandler implements Runnable
           }
           if (message.getMessage().equals("Users"))
           {
-            String str = "";
+            StringBuilder str = new StringBuilder();
             for (ServerSocketHandler client : Server.pool.getConnections())
             {
-              str += client.username + ", ";
+              str.append(client.username).append(", ");
             }
             System.out.println(str);
 

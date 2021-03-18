@@ -1,4 +1,4 @@
-package Server;
+package server;
 
 
 import model.User;
@@ -38,14 +38,16 @@ public class Server implements Runnable
     {
       e.printStackTrace();
     }
-    Thread tr = new Thread(new ServerReadSave());
-    tr.start();
+
     while (running)
     {
       try
       {
         socket = serverSocket.accept();
-        userSet.add(new User(socket));
+        ServerSocketHandler socketHandler = new ServerSocketHandler(socket,
+            serverOperationModel);
+        Thread tr = new Thread(socketHandler);
+        tr.start();
       }
       catch (IOException e)
       {
