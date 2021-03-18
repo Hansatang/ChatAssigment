@@ -11,9 +11,9 @@ public class Server implements Runnable
   private ServerSocket serverSocket;
   private Socket socket;
   private Pool pool = new Pool();
-  private boolean running = true;
+  private int port;
 
-  public int port;
+  private boolean running = true;
 
   public Server(int port)
   {
@@ -24,7 +24,7 @@ public class Server implements Runnable
   {
     try
     {
-      serverSocket = new ServerSocket(2910);
+      serverSocket = new ServerSocket(port);
     }
     catch (IOException e)
     {

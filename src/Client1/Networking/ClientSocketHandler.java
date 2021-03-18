@@ -2,7 +2,6 @@ package Client1.Networking;
 
 import Shared.Message;
 
-import java.beans.PropertyChangeSupport;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
@@ -36,7 +35,7 @@ public class ClientSocketHandler implements Runnable
       {
         Message message = (Message) inputStream.readObject();
         System.out.println(message.getMessage());
-        client.receive(message);
+        client.receiveMessage(message);
       }
       catch (IOException | ClassNotFoundException e)
       {

@@ -9,7 +9,7 @@ public class ViewModelLogin
 {
   private StringProperty username;
   private DataModel model;
-  private ViewHandler viewHandler;
+
 
   public ViewModelLogin(DataModel model)
   {
@@ -26,7 +26,7 @@ public class ViewModelLogin
   {
     if (username.get() == null)
     {
-      model.createClient("No one");
+      model.createClient("Anonymous");
     }
     else
     {

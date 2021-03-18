@@ -11,16 +11,12 @@ import java.io.IOException;
 
 public class ViewHandler
 {
-
   private Stage stage;
-  private LoginViewController loginViewController;
-  private ChatViewController chatViewController;
   private ViewModelFactory viewModelFactory;
 
   public ViewHandler(ViewModelFactory viewModelFactory)
   {
     this.viewModelFactory = viewModelFactory;
-
   }
 
   public void start(Stage primaryStage)
@@ -32,7 +28,6 @@ public class ViewHandler
 
   public void openLoginView()
   {
-
     FXMLLoader loader = new FXMLLoader();
     loader.setLocation(getClass().getResource("../FXML/login.fxml"));
     Parent root = null;
@@ -62,7 +57,6 @@ public class ViewHandler
 
   public void openChatView()
   {
-
     FXMLLoader loader = new FXMLLoader();
     loader.setLocation(getClass().getResource("../FXML/chat.fxml"));
     Parent root = null;

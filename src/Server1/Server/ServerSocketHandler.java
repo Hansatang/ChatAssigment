@@ -29,23 +29,6 @@ public class ServerSocketHandler implements Runnable
     this.connected = true;
   }
 
-  public void userConnected()
-  {
-    for (ServerSocketHandler client : server.getPool().getConnections())
-    {
-      try
-      {
-        client.out.writeObject(
-            new Message("Server>>>", username + " connected to he server ",
-                false));
-      }
-      catch (IOException e)
-      {
-        e.printStackTrace();
-      }
-    }
-  }
-
   public void run()
   {
     while (connected)
@@ -114,6 +97,23 @@ public class ServerSocketHandler implements Runnable
     }
   }
 
+  public void userConnected()
+  {
+    for (ServerSocketHandler client : server.getPool().getConnections())
+    {
+      try
+      {
+        client.out.writeObject(
+            new Message("Server>>>", username + " connected to he server ",
+                false));
+      }
+      catch (IOException e)
+      {
+        e.printStackTrace();
+      }
+    }
+  }
+
   public void sendMsg(String msg)
   {
     try
@@ -135,14 +135,11 @@ public class ServerSocketHandler implements Runnable
   {
     try
     {
-      System.out.println(3);
       server.getPool().removeConn(this);
-      System.out.println(4);
       in.close();
       out.close();
       socket.close();
       this.connected = false;
-
     }
     catch (IOException e)
     {

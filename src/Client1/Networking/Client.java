@@ -14,18 +14,14 @@ import java.net.Socket;
 public class Client implements ClientModel
 {
 
-  private String hostname = "localhost";
   private Socket socket;
   private ObjectOutputStream objectOutputStream;
-  private ObjectInputStream objectInputStream;
   private boolean running = true;
-  private DataModelManager manager;
   private String name;
   private PropertyChangeSupport support;
 
-  public Client(DataModelManager manager, String name)
+  public Client(String name)
   {
-    this.manager = manager;
     this.name = name;
     support = new PropertyChangeSupport(this);
 
@@ -67,13 +63,13 @@ public class Client implements ClientModel
     support.addPropertyChangeListener(name, listener);
   }
 
-  public void receive(Message message)
+  @Override public void receiveMessage(Message message)
   {
     System.out.println("Client receive" + message);
     support.firePropertyChange("NewMessage", null, message);
   }
 
-  public void deactivateUser()
+  @Override public void deactivateClient()
   {
     running = false;
     try

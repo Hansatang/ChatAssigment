@@ -13,14 +13,13 @@ public class ServerView
 {
   @FXML Label label;
   private Server server;
-  private Stage stage;
-  private Thread tr1;
+
+  private Thread serverThread;
 
   public void init(Stage stage)
   {
     try
     {
-      this.stage = stage;
       FXMLLoader loader = new FXMLLoader();
       loader.setLocation(getClass().getResource("../FXML/server.fxml"));
       Parent root = loader.load();
@@ -39,8 +38,8 @@ public class ServerView
   {
     label.setText("Server is running...");
     this.server = new Server(2910);
-    tr1 = new Thread(server);
-    tr1.start();
+    serverThread = new Thread(server);
+    serverThread.start();
   }
 
   @FXML public void stopServer()

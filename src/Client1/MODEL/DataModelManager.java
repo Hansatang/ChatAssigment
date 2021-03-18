@@ -1,6 +1,7 @@
 package Client1.MODEL;
 
 import Client1.Networking.Client;
+import Client1.Networking.ClientModel;
 import Shared.Message;
 
 import java.beans.PropertyChangeEvent;
@@ -9,7 +10,7 @@ import java.beans.PropertyChangeSupport;
 
 public class DataModelManager implements DataModel
 {
-  private Client client;
+  private ClientModel client;
   private String name;
   private PropertyChangeSupport support = new PropertyChangeSupport(this);
 
@@ -25,7 +26,7 @@ public class DataModelManager implements DataModel
 
   @Override public void createClient(String name)
   {
-    client = new Client(this, name);
+    client = new Client(name);
     client.addPropertyChangeListener("NewMessage", this::update);
     this.name = name;
   }
@@ -38,7 +39,7 @@ public class DataModelManager implements DataModel
 
   @Override public void decreateClient()
   {
-    client.deactivateUser();
+    client.deactivateClient();
   }
 
   @Override public String getUsername()

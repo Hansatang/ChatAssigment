@@ -35,6 +35,11 @@ public class ViewModelChat
     return chat;
   }
 
+  public Property<String> userProperty()
+  {
+    return User;
+  }
+
   public void sendMessage()
   {
     if (message.get() != null)
@@ -72,13 +77,6 @@ public class ViewModelChat
   public void closeChat()
   {
     model.sendMessage(new Message(model.getUsername(), "exit", true));
-
     model.decreateClient();
-
-  }
-
-  public Property<String> userProperty()
-  {
-    return User;
   }
 }
