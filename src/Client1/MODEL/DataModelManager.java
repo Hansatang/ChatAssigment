@@ -17,22 +17,18 @@ public class DataModelManager implements DataModel
 
   @Override public void sendMessage(Message text)
   {
-    client.sendMsg(text);
+    client.sendMessage(text);
   }
 
-  @Override public void update(PropertyChangeEvent propertyChangeEvent)
+  @Override public void update(Message message)
   {
-    System.out.println("Datamodel receives"+propertyChangeEvent.getNewValue());
-    support.firePropertyChange(propertyChangeEvent);
+    support.firePropertyChange("received", null, message);
   }
 
   @Override public void createClient(String name)
   {
     client = new Client(this, name);
     this.name = name;
-    System.out.println(1);
-    client.addPropertyChangeListener("updated", this::update);
-    System.out.println(2);
   }
 
   @Override public void addPropertyChangeListener(String name,

@@ -49,6 +49,11 @@ public class ViewHandler
     stage.setTitle("Login View");
     Scene scene = new Scene(root);
     stage.setScene(scene);
+    scene.setOnKeyPressed( event -> {
+      if( event.getCode() == KeyCode.ENTER ) {
+        viewController.startChat();
+      }
+    } );
     stage.show();
   }
 

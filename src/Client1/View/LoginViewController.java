@@ -23,7 +23,7 @@ public class LoginViewController
         .bindBidirectional(viewModelLogin.usernameProperty());
   }
 
-  @FXML public void startChat(javafx.event.ActionEvent actionEvent)
+  @FXML public void startChat()
   {
     viewModelLogin.startChat();
     viewHandler.openChatView();

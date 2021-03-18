@@ -9,7 +9,7 @@ import java.beans.PropertyChangeListener;
 public interface DataModel
 {
   void sendMessage(Message text);
-  void update(PropertyChangeEvent propertyChangeEvent);
+  void update(Message message);
   void createClient(String name);
   void addPropertyChangeListener(String name, PropertyChangeListener listener);
   void decreateClient();

@@ -1,7 +1,6 @@
 package Client1.Networking;
 
 import Client1.MODEL.DataModelManager;
-import Client1.ViewModel.ViewModelLogin;
 import Shared.Message;
 
 import java.beans.PropertyChangeEvent;
@@ -46,7 +45,7 @@ public class Client implements ClientModel, PropertyChangeListener
     {
       throw new RuntimeException("Unable to connect to the server");
     }
-    sendMsg(new Message(name, "Null", false));
+    sendMessage(new Message(name, "Null", false));
 
   }
 
@@ -57,7 +56,7 @@ public class Client implements ClientModel, PropertyChangeListener
 
 
 
-  @Override public void sendMsg(Message text)
+  @Override public void sendMessage(Message text)
   {
     try
     {
@@ -78,7 +77,7 @@ public class Client implements ClientModel, PropertyChangeListener
   public void receive(Message message)
   {
     System.out.println("Client receive" + message);
-    support.firePropertyChange("updated", null, message);
+    manager.update(message);
   }
   public void deactivateUser()
   {
