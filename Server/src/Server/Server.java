@@ -1,17 +1,21 @@
 package Server;
 
 
+import model.User;
 import utility.ServerOperationModel;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Server implements Runnable
 {
   private ServerSocket serverSocket;
   private Socket socket;
   static ClientPool pool = new ClientPool();
+  static Set<User> userSet = new HashSet<>();
   private int port;
   private ServerOperationModel serverOperationModel;
 
@@ -34,15 +38,14 @@ public class Server implements Runnable
     {
       e.printStackTrace();
     }
+    Thread tr = new Thread(new ServerReadSave());
+    tr.start();
     while (running)
     {
       try
       {
         socket = serverSocket.accept();
-        ServerSocketHandler socketHandler = new ServerSocketHandler(socket,
-            serverOperationModel);
-        Thread tr = new Thread(socketHandler);
-        tr.start();
+        userSet.add(new User(socket));
       }
       catch (IOException e)
       {

@@ -56,4 +56,17 @@ public class User
   {
     this.username = username;
   }
+
+  public boolean gotMessage()
+  {
+    try
+    {
+      return in.available() == 0;
+    }
+    catch (IOException e)
+    {
+      e.printStackTrace();
+    }
+    return false;
+  }
 }

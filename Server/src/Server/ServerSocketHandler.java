@@ -16,7 +16,6 @@ public class ServerSocketHandler implements Runnable
   private ServerOperationModel serverOperationModel;
   private boolean connected;
 
-
   public ServerSocketHandler(Socket socket, ServerOperationModel dataModelS)
   {
     this.serverOperationModel = dataModelS;
@@ -45,6 +44,7 @@ public class ServerSocketHandler implements Runnable
     {
       try
       {
+
         Message message = (Message) in.readObject();
         System.out.println("Message " + message.getMessage());
         if (message.getMessage().equals("Listener"))
