@@ -1,8 +1,8 @@
 import model.DataModel;
 
 import model.DataModelManager;
-import View.ViewHandler;
-import ViewModel.ViewModelFactory;
+import view.ViewHandler;
+import viewModel.ViewModelFactory;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

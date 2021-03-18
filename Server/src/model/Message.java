@@ -5,7 +5,6 @@ import java.time.LocalTime;
 
 public class Message implements Serializable
 {
-
   private String user;
   private String message;
   private boolean command;

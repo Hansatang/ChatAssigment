@@ -1,7 +1,7 @@
 package model;
 
-import Networking.Client;
-import Networking.ClientModel;
+import networking.Client;
+import networking.ClientModel;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;

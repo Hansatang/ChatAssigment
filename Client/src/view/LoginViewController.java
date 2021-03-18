@@ -1,6 +1,6 @@
-package View;
+package view;
 
-import ViewModel.ViewModelLogin;
+import viewModel.ViewModelLogin;
 
 import javafx.fxml.FXML;
 
