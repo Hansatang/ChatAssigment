@@ -67,11 +67,11 @@ public class ServerSocketHandler implements Runnable
           {
             if (message.getMessage().equals("exit"))
             {
-              for (ServerSocketHandler client : server.getPool().getConnections())
-              {
-                client.out.writeObject(new Message("Server>>>", username + " disconnected to he server ",
-                    false));
-              }
+//              for (ServerSocketHandler client : server.getPool().getConnections())
+//              {
+//                client.out.writeObject(new Message("Server>>>", username + " disconnected to he server ",
+//                    false));
+//              }
               close();
             }
             if (message.getMessage().equals("Users"))
@@ -129,12 +129,14 @@ public class ServerSocketHandler implements Runnable
   {
     try
     {
-
-      this.connected = false;
+      System.out.println(3);
       server.getPool().removeConn(this);
+      System.out.println(4);
       in.close();
       out.close();
       socket.close();
+      this.connected = false;
+
     }
     catch (IOException e)
     {
