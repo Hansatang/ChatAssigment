@@ -41,7 +41,10 @@ public class Client implements ClientModel
     {
       throw new RuntimeException("Unable to connect to the server");
     }
-    sendMessage(new Message(name, "Null", false));
+    sendMessage(new Message(name, "Listener", true));
+    System.out.println("coooo");
+    sendMessage(new Message(name, "Null", true));
+    System.out.println("nieeee");
 
   }
 

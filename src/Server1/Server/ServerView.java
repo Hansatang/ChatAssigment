@@ -1,5 +1,8 @@
 package Server1.Server;
 
+import Server1.MODEL.DataModelManagerS;
+import Server1.MODEL.DataModelS;
+import Shared.Message;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.IOException;
 
 public class ServerView
@@ -38,6 +43,7 @@ public class ServerView
   {
     label.setText("Server is running...");
     this.server = new Server(2910);
+
     serverThread = new Thread(server);
     serverThread.start();
   }

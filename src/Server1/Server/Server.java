@@ -1,5 +1,7 @@
 package Server1.Server;
 
+import Server1.MODEL.DataModelManagerS;
+import Server1.MODEL.DataModelS;
 import Shared.Message;
 
 import java.io.*;
@@ -13,11 +15,13 @@ public class Server implements Runnable
   private Pool pool = new Pool();
   private int port;
 
+
   private boolean running = true;
 
   public Server(int port)
   {
     this.port = port;
+
   }
 
   @Override public void run()
@@ -35,23 +39,21 @@ public class Server implements Runnable
       try
       {
         socket = serverSocket.accept();
-        System.out
-            .println("User " + socket.getInetAddress() + " joined the chat");
-        ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
-        Message name = (Message) in.readObject();
-        String username = name.getUser();
-        ObjectOutputStream out = new ObjectOutputStream(
-            socket.getOutputStream());
-        ServerSocketHandler socketHandler = new ServerSocketHandler(username,
-            socket, in, out, this);
-        pool.addConn(socketHandler);
-        socketHandler.userConnected();
-        System.out
-            .println("User " + socketHandler.getUsername() + " has been added");
+//
+//        ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
+//        Message name = (Message) in.readObject();
+//        String username = name.getUser();
+//        ObjectOutputStream out = new ObjectOutputStream(
+//            socket.getOutputStream());
+        ServerSocketHandler socketHandler = new ServerSocketHandler(
+            socket,new DataModelManagerS(), this);
+//        pool.addConn(socketHandler);
+//        socketHandler.userConnected();
+//
         Thread tr = new Thread(socketHandler);
         tr.start();
       }
-      catch (IOException | ClassNotFoundException e)
+      catch (IOException e)
       {
         e.printStackTrace();
       }
