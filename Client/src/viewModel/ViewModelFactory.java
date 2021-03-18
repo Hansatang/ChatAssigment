@@ -1,14 +1,14 @@
 package viewModel;
 
-import model.DataModel;
+import model.ClientOperations;
 
 public class ViewModelFactory
 {
   private ViewModelLogin viewModelLogin;
   private ViewModelChat viewModelChat;
-  private DataModel dataModel;
+  private ClientOperations dataModel;
 
-  public ViewModelFactory(DataModel dataModel)
+  public ViewModelFactory(ClientOperations dataModel)
   {
     this.dataModel = dataModel;
     this.viewModelChat = new ViewModelChat(dataModel);

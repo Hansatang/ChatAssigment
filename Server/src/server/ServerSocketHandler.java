@@ -112,7 +112,6 @@ public class ServerSocketHandler implements Runnable
                         + " user connected \n" + str, false));
           }
         }
-
       }
       catch (IOException | ClassNotFoundException e)
       {

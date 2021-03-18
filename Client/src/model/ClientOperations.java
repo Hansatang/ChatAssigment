@@ -3,7 +3,7 @@ package model;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public interface DataModel
+public interface ClientOperations
 {
   void sendMessage(Message text);
   void update(PropertyChangeEvent evt);

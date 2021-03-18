@@ -1,18 +1,17 @@
 package viewModel;
 
-import model.DataModel;
+import model.ClientOperations;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class ViewModelLogin
 {
   private StringProperty username;
-  private DataModel model;
+  private ClientOperations clientOperations;
 
-
-  public ViewModelLogin(DataModel model)
+  public ViewModelLogin(ClientOperations model)
   {
-    this.model = model;
+    this.clientOperations = model;
     username = new SimpleStringProperty();
   }
 
@@ -25,11 +24,11 @@ public class ViewModelLogin
   {
     if (username.get() == null)
     {
-      model.createClient("Anonymous");
+      clientOperations.createClient("Anonymous");
     }
     else
     {
-      model.createClient(username.get());
+      clientOperations.createClient(username.get());
     }
   }
 }

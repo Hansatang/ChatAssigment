@@ -1,6 +1,6 @@
-import model.DataModel;
+import model.ClientOperations;
 
-import model.DataModelManager;
+import model.ClientOperationsManager;
 import view.ViewHandler;
 import viewModel.ViewModelFactory;
 import javafx.application.Application;
@@ -9,13 +9,13 @@ import javafx.stage.Stage;
 public class Main extends Application
 {
 
-  private DataModel model;
+  private ClientOperations model;
   private ViewModelFactory viewModelFactory;
   private ViewHandler viewHandler;
 
   @Override public void start(Stage stage)
   {
-    model = new DataModelManager();
+    model = new ClientOperationsManager();
     viewModelFactory = new ViewModelFactory(model);
     viewHandler = new ViewHandler(viewModelFactory);
     viewHandler.start(stage);

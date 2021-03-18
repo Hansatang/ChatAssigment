@@ -1,6 +1,6 @@
 package viewModel;
 
-import model.DataModel;
+import model.ClientOperations;
 
 import javafx.application.Platform;
 import javafx.beans.property.Property;
@@ -15,9 +15,9 @@ public class ViewModelChat
   private StringProperty message;
   private StringProperty chat;
   private StringProperty User;
-  private DataModel model;
+  private ClientOperations model;
 
-  public ViewModelChat(DataModel model)
+  public ViewModelChat(ClientOperations model)
   {
     this.model = model;
     chat = new SimpleStringProperty();

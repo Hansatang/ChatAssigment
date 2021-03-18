@@ -1,21 +1,20 @@
 package server;
 
 
-import model.User;
+
 import utility.ServerOperationModel;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.HashSet;
-import java.util.Set;
+
 
 public class Server implements Runnable
 {
   private ServerSocket serverSocket;
   private Socket socket;
   static ClientPool pool = new ClientPool();
-  static Set<User> userSet = new HashSet<>();
+
   private int port;
   private ServerOperationModel serverOperationModel;
 

@@ -7,7 +7,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class DataModelManager implements DataModel
+public class ClientOperationsManager implements ClientOperations
 {
   private ClientModel client;
   private String name;
