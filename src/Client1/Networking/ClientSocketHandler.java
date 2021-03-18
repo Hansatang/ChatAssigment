@@ -18,8 +18,6 @@ public class ClientSocketHandler implements Runnable
   {
     this.socket = socket;
     this.client = client;
-
-
   }
 
   @Override public void run()
@@ -46,6 +44,5 @@ public class ClientSocketHandler implements Runnable
       }
     }
   }
-
 
 }

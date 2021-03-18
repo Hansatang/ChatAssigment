@@ -9,7 +9,8 @@
       minWidth="-Infinity" prefHeight="276.0" prefWidth="600.0"
       style="-fx-background-color: #575756;"
       xmlns="http://javafx.com/javafx/11.0.1"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="Server1.Server.ServerView">
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="Server1.Server.ServerView">
     <children>
         <Button layoutX="135.0" layoutY="165.0" mnemonicParsing="false"
                 onAction="#startServer" prefHeight="35.0" prefWidth="118.0"

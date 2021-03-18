@@ -25,7 +25,8 @@ public class ChatViewController
         .bindBidirectional(viewModelChat.messageProperty());
     messagesTextArea.textProperty()
         .bindBidirectional(viewModelChat.chatProperty());
-    UsernameLabel.textProperty().bindBidirectional(viewModelChat.userProperty());
+    UsernameLabel.textProperty()
+        .bindBidirectional(viewModelChat.userProperty());
   }
 
   @FXML public void sendMessage()

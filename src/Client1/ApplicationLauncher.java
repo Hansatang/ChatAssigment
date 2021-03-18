@@ -4,7 +4,8 @@ import javafx.application.Application;
 
 public class ApplicationLauncher
 {
-	public static void main(String[] args) {
-		Application.launch(Main.class);
-	}
+  public static void main(String[] args)
+  {
+    Application.launch(Main.class);
+  }
 }

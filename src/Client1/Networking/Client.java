@@ -11,7 +11,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-public class Client implements ClientModel, PropertyChangeListener
+public class Client implements ClientModel
 {
 
   private String hostname = "localhost";
@@ -49,13 +49,6 @@ public class Client implements ClientModel, PropertyChangeListener
 
   }
 
-  @Override public void propertyChange(PropertyChangeEvent evt)
-  {
-
-  }
-
-
-
   @Override public void sendMessage(Message text)
   {
     try
@@ -77,8 +70,9 @@ public class Client implements ClientModel, PropertyChangeListener
   public void receive(Message message)
   {
     System.out.println("Client receive" + message);
-    manager.update(message);
+    support.firePropertyChange("NewMessage", null, message);
   }
+
   public void deactivateUser()
   {
     running = false;

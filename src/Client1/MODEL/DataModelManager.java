@@ -9,8 +9,6 @@ import java.beans.PropertyChangeSupport;
 
 public class DataModelManager implements DataModel
 {
-
-
   private Client client;
   private String name;
   private PropertyChangeSupport support = new PropertyChangeSupport(this);
@@ -20,14 +18,15 @@ public class DataModelManager implements DataModel
     client.sendMessage(text);
   }
 
-  @Override public void update(Message message)
+  @Override public void update(PropertyChangeEvent evt)
   {
-    support.firePropertyChange("received", null, message);
+    support.firePropertyChange("NewMessage", null, evt.getNewValue());
   }
 
   @Override public void createClient(String name)
   {
     client = new Client(this, name);
+    client.addPropertyChangeListener("NewMessage", this::update);
     this.name = name;
   }
 

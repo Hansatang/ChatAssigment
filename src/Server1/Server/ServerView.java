@@ -11,15 +11,10 @@ import java.io.IOException;
 
 public class ServerView
 {
-
   @FXML Label label;
   private Server server;
   private Stage stage;
   private Thread tr1;
-
-  public ServerView()
-  {
-  }
 
   public void init(Stage stage)
   {
@@ -38,7 +33,6 @@ public class ServerView
     {
       e.printStackTrace();
     }
-
   }
 
   @FXML public void startServer()

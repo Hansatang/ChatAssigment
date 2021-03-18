@@ -22,8 +22,7 @@ public class ViewModelChat
     chat = new SimpleStringProperty();
     User = new SimpleStringProperty();
     message = new SimpleStringProperty();
-    model.addPropertyChangeListener("received", this::updated);
-
+    model.addPropertyChangeListener("NewMessage", this::updated);
   }
 
   public StringProperty messageProperty()
@@ -48,7 +47,6 @@ public class ViewModelChat
       model.sendMessage(new Message(model.getUsername(),
           "I wanted to send you an empty message", false));
     }
-
   }
 
   public void getUsers()

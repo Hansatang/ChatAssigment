@@ -30,42 +30,49 @@ public class ViewHandler
     openLoginView();
   }
 
-  public void openLoginView() {
-
+  public void openLoginView()
+  {
 
     FXMLLoader loader = new FXMLLoader();
     loader.setLocation(getClass().getResource("../FXML/login.fxml"));
     Parent root = null;
-    try {
+    try
+    {
       root = loader.load();
 
     }
-    catch(IOException e) {
+    catch (IOException e)
+    {
       e.printStackTrace();
 
     }
     LoginViewController viewController = loader.getController();
-    viewController.init(viewModelFactory.getViewModelLogin(),this);
+    viewController.init(viewModelFactory.getViewModelLogin(), this);
     stage.setTitle("Login View");
     Scene scene = new Scene(root);
     stage.setScene(scene);
-    scene.setOnKeyPressed( event -> {
-      if( event.getCode() == KeyCode.ENTER ) {
+    scene.setOnKeyPressed(event -> {
+      if (event.getCode() == KeyCode.ENTER)
+      {
         viewController.startChat();
       }
-    } );
+    });
     stage.show();
   }
 
-  public void openChatView() {
+  public void openChatView()
+  {
 
     FXMLLoader loader = new FXMLLoader();
     loader.setLocation(getClass().getResource("../FXML/chat.fxml"));
     Parent root = null;
-    try {
+    try
+    {
       root = loader.load();
 
-    } catch (IOException e) {
+    }
+    catch (IOException e)
+    {
       e.printStackTrace();
 
     }
@@ -74,11 +81,12 @@ public class ViewHandler
     stage.setTitle("Chat View");
     Scene scene = new Scene(root);
     stage.setScene(scene);
-    scene.setOnKeyPressed( event -> {
-      if( event.getCode() == KeyCode.ENTER ) {
+    scene.setOnKeyPressed(event -> {
+      if (event.getCode() == KeyCode.ENTER)
+      {
         viewController.sendMessage();
       }
-    } );
+    });
     stage.show();
 
   }

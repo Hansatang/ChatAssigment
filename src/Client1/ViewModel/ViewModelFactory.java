@@ -10,16 +10,18 @@ public class ViewModelFactory
 
   public ViewModelFactory(DataModel dataModel)
   {
-    this.dataModel=dataModel;
+    this.dataModel = dataModel;
     this.viewModelChat = new ViewModelChat(dataModel);
     this.viewModelLogin = new ViewModelLogin(dataModel);
   }
 
-  public ViewModelLogin getViewModelLogin() {
+  public ViewModelLogin getViewModelLogin()
+  {
     return viewModelLogin;
   }
 
-  public ViewModelChat getViewModelChat() {
+  public ViewModelChat getViewModelChat()
+  {
     return viewModelChat;
   }
 }

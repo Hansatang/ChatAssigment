@@ -9,19 +9,21 @@ public class Pool
 
   public Pool()
   {
-    connections =  new ArrayList<>();
+    connections = new ArrayList<>();
   }
 
-  public synchronized void  addConn(ServerSocketHandler ssh)
+  public synchronized void addConn(ServerSocketHandler ssh)
   {
     connections.add(ssh);
   }
-  public synchronized void  removeConn(ServerSocketHandler ssh)
+
+  public synchronized void removeConn(ServerSocketHandler ssh)
   {
-    for (int i = 0; i <connections.size() ; i++)
+    for (int i = 0; i < connections.size(); i++)
     {
       System.out.println(connections.size());
-      if (connections.get(i) ==ssh){
+      if (connections.get(i) == ssh)
+      {
         connections.remove(ssh);
       }
     }

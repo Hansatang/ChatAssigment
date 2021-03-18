@@ -6,6 +6,6 @@ import java.beans.PropertyChangeListener;
 
 public interface ClientModel
 {
-void sendMessage(Message text);
-void addPropertyChangeListener(String name, PropertyChangeListener listener);
+  void sendMessage(Message text);
+  void addPropertyChangeListener(String name, PropertyChangeListener listener);
 }
