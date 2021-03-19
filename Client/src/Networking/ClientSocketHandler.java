@@ -1,44 +1,50 @@
 package Networking;
 
 
+import com.google.gson.Gson;
 import model.Message;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
 public class ClientSocketHandler implements Runnable
 {
 
-  private ObjectInputStream inputStream;
+  private BufferedReader inputStream;
   private Socket socket;
   private Client client;
+  private Gson json;
 
   public ClientSocketHandler(Socket socket, Client client)
   {
     this.socket = socket;
     this.client = client;
-  }
-
-  @Override public void run()
-  {
+    json = new Gson();
     try
     {
-      inputStream = new ObjectInputStream(socket.getInputStream());
+      this.inputStream = new BufferedReader(new InputStreamReader(socket.getInputStream()));
     }
     catch (IOException e)
     {
       e.printStackTrace();
     }
+  }
+
+  @Override public void run()
+  {
+
     while (client.isRunning())
     {
       try
       {
-        Message message = (Message) inputStream.readObject();
-        System.out.println(message.getMessage());
-        client.receiveMessage(message);
+        String str = inputStream.readLine();
+        Message msg = json.fromJson(str, Message.class);
+        client.receiveMessage(msg);
       }
-      catch (IOException | ClassNotFoundException e)
+      catch (IOException e)
       {
         System.out.println("Connection lost");
       }

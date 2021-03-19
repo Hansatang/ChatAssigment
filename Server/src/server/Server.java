@@ -1,4 +1,4 @@
-package Server;
+package server;
 
 
 import model.User;
@@ -14,8 +14,8 @@ public class Server implements Runnable
 {
   private ServerSocket serverSocket;
   private Socket socket;
-  static ClientPool pool = new ClientPool();
-  static Set<User> userSet = new HashSet<>();
+
+  static Set<User> userSet;
   private int port;
   private ServerOperationModel serverOperationModel;
 
@@ -25,6 +25,7 @@ public class Server implements Runnable
   {
     this.port = port;
     this.serverOperationModel = dataModelS;
+   userSet = new HashSet<User>();
 
   }
 
@@ -71,6 +72,9 @@ public class Server implements Runnable
     this.running = running;
   }
 
+  public static void remove(User user) {
+    userSet.remove(user);
+  }
 }
 
 

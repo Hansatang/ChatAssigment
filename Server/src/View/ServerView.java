@@ -1,13 +1,14 @@
-package View;
+package view;
 
 
-import Server.Server;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import server.Server;
 import utility.ServerOperationManager;
 
 import java.io.IOException;
@@ -28,7 +29,7 @@ public class ServerView
       Parent root = loader.load();
       Scene scene = new Scene(root);
       stage.setScene(scene);
-      stage.setTitle("Server");
+      stage.setTitle("server");
       stage.show();
     }
     catch (IOException e)

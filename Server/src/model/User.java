@@ -1,51 +1,64 @@
 package model;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import com.google.gson.Gson;
+import server.Server;
+
+import java.io.*;
 import java.net.Socket;
 
 public class User
 {
   private Socket socket;
   private String username;
-  private ObjectOutputStream out;
-  private ObjectInputStream in;
+  private Gson json;
+  private PrintWriter out;
+  private BufferedReader in;
 
   public User(Socket socket)
   {
     this.socket = socket;
+    json = new Gson();
 
     try
     {
-      this.out = new ObjectOutputStream(socket.getOutputStream());
-      this.in = new ObjectInputStream(socket.getInputStream());
+      this.in = new BufferedReader(
+          new InputStreamReader(socket.getInputStream()));
+      this.out = new PrintWriter(socket.getOutputStream(), true);
     }
     catch (IOException e)
     {
       e.printStackTrace();
     }
+
   }
 
   public void sendMessage(Message text)
   {
-    try
-    {
-      out.writeObject(text);
-    }
-    catch (IOException e)
-    {
-      e.printStackTrace();
-    }
+    out.println(json.toJson(text));
   }
 
   public Message receiveMessage()
   {
     try
     {
-      return (Message) in.readObject();
+      String msg = in.readLine();
+      Message message = json.fromJson(msg, Message.class);
+
+      if (message.isCommand())
+      {
+        if (message.getMessage().equals("Listener"))
+        {
+          this.username = message.getUser();
+          message = new Message("Server>>>", username + " connected to he server ", false);
+        }
+        else  if (message.getMessage().equals("exit"))
+        {
+          message = new Message("Server>>>", username + " disconnected from the server ", true);
+        }
+      }
+      return message;
     }
-    catch (IOException | ClassNotFoundException e)
+    catch (IOException e)
     {
       e.printStackTrace();
     }
@@ -61,12 +74,33 @@ public class User
   {
     try
     {
-      return in.available() == 0;
+      return in.ready();
     }
     catch (IOException e)
     {
       e.printStackTrace();
     }
     return false;
+  }
+
+  public String getUsername()
+  {
+    return username;
+  }
+
+  public void close()
+  {
+    try
+    {
+      in.close();
+      out.close();
+      socket.close();
+    }
+    catch (IOException e)
+    {
+      e.printStackTrace();
+    }
+
+
   }
 }
