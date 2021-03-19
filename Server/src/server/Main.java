@@ -2,6 +2,7 @@ package server;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import view.ServerView;
 
 public class Main extends Application
 {
