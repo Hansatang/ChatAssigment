@@ -22,7 +22,7 @@ public class DataModelManagerS implements DataModelS
   }
 
   /** Add listener to the Change Support initialized in this class */
-  @Override public void addListener(String name,
+  @Override public void addPropertyChangeListener(String name,
       PropertyChangeListener listener)
   {
     support.addPropertyChangeListener(name, listener);

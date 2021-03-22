@@ -7,6 +7,6 @@ import java.beans.PropertyChangeListener;
 public interface DataModelS
 {
   void sendMessage(Message text);
-  void addListener(String name, PropertyChangeListener listener);
+  void addPropertyChangeListener(String name, PropertyChangeListener listener);
 
 }

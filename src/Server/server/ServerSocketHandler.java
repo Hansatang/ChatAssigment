@@ -74,7 +74,7 @@ public class ServerSocketHandler implements Runnable
   private void connectedMessageFromClient()
   {
     this.username = message.getUser();
-    dataModelS.addListener("NewMessage", this::newMessage);
+    dataModelS.addPropertyChangeListener("NewMessage", this::newMessage);
     for (ServerSocketHandler client : server.getPool().getConnections())
     {
       client.dataModelS.sendMessage(
