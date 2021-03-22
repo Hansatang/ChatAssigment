@@ -13,7 +13,6 @@ public class Server implements Runnable
   private Pool pool = new Pool();
   private int port;
 
-
   private boolean running = true;
 
   public Server(int port)
@@ -37,17 +36,8 @@ public class Server implements Runnable
       try
       {
         socket = serverSocket.accept();
-//
-//        ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
-//        Message name = (Message) in.readObject();
-//        String username = name.getUser();
-//        ObjectOutputStream out = new ObjectOutputStream(
-//            socket.getOutputStream());
-        ServerSocketHandler socketHandler = new ServerSocketHandler(
-            socket,new DataModelManagerS(), this);
-//        pool.addConn(socketHandler);
-//        socketHandler.userConnected();
-//
+        ServerSocketHandler socketHandler = new ServerSocketHandler(socket,
+            new DataModelManagerS(), this);
         Thread tr = new Thread(socketHandler);
         tr.start();
       }

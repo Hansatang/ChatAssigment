@@ -10,7 +10,6 @@ import java.net.Socket;
 
 public class Client implements ClientModel
 {
-
   private Socket socket;
   private ObjectOutputStream objectOutputStream;
   private boolean running = true;
@@ -22,30 +21,25 @@ public class Client implements ClientModel
   {
     this.name = name;
     support = new PropertyChangeSupport(this);
-
     try
     {
       this.socket = new Socket("localhost", 2910);
       this.objectOutputStream = new ObjectOutputStream(
           socket.getOutputStream());
-      ClientSocketHandler clientSocketHandler = new ClientSocketHandler(socket,
-          this);
-
-      Thread thread = new Thread(clientSocketHandler);
-      thread.setDaemon(true);
-      thread.start();
     }
     catch (IOException e)
     {
       throw new RuntimeException("Unable to connect to the server");
     }
-    sendMessage(new Message(name, "Listener", true));
-    System.out.println("coooo");
-    sendMessage(new Message(name, "Null", true));
-    System.out.println("nieeee");
 
+    ClientSocketHandler clientSocketHandler = new ClientSocketHandler(socket,
+        this);
+    Thread thread = new Thread(clientSocketHandler);
+    thread.setDaemon(true);
+    thread.start();
+
+    sendMessage(new Message(name, "Connection", true));
   }
-
 
   /** Send a Message object from client to server */
   @Override public void sendMessage(Message text)

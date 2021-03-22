@@ -8,7 +8,6 @@ import java.net.Socket;
 
 public class ClientSocketHandler implements Runnable
 {
-
   private ObjectInputStream inputStream;
   private Socket socket;
   private Client client;
@@ -34,7 +33,7 @@ public class ClientSocketHandler implements Runnable
       try
       {
         Message message = (Message) inputStream.readObject();
-        System.out.println(message.getMessage());
+        System.out.println("Receive message " + message.getMessage());
         client.receiveMessage(message);
       }
       catch (IOException | ClassNotFoundException e)

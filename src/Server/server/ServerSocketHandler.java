@@ -9,60 +9,47 @@ import java.net.Socket;
 
 public class ServerSocketHandler implements Runnable
 {
-
   private Socket socket;
+  private Server server;
+  private DataModelS dataModelS;
   private ObjectOutputStream out;
   private ObjectInputStream in;
 
   private String username;
   private Message message;
-  private Server server;
-  private DataModelS dataModelS;
   private boolean connected;
 
   public ServerSocketHandler(Socket socket, DataModelS dataModelS,
       Server server)
   {
     this.dataModelS = dataModelS;
-
     this.socket = socket;
+    this.server = server;
+    this.connected = true;
+
     try
     {
       this.in = new ObjectInputStream(socket.getInputStream());
       this.out = new ObjectOutputStream(socket.getOutputStream());
-
-      System.out.println(server.getPool().getConnections().size());
       server.getPool().addConn(this);
-      System.out.println(server.getPool().getConnections().size());
     }
     catch (IOException e)
     {
       e.printStackTrace();
     }
-
-    this.server = server;
-
-    this.connected = true;
   }
 
   public void run()
   {
-
     while (connected)
     {
       try
       {
         message = (Message) in.readObject();
-        System.out.println(message.isCommand());
         System.out.println("Message " + message.getMessage());
-
-        if (message.getMessage().equals("Listener"))
+        if (message.getMessage().equals("Connection"))
         {
-          listenerFromClient();
-        }
-        else if (message.getMessage().equals("Null"))
-        {
-          connectionFromClient();
+          connectedMessageFromClient();
         }
         else if (message.getMessage().equals("Users"))
         {
@@ -84,14 +71,10 @@ public class ServerSocketHandler implements Runnable
     }
   }
 
-  private void listenerFromClient()
+  private void connectedMessageFromClient()
   {
     this.username = message.getUser();
-    dataModelS.addListener("NewMessage", this::NewMessage);
-  }
-
-  private void connectionFromClient()
-  {
+    dataModelS.addListener("NewMessage", this::newMessage);
     for (ServerSocketHandler client : server.getPool().getConnections())
     {
       client.dataModelS.sendMessage(
@@ -148,7 +131,7 @@ public class ServerSocketHandler implements Runnable
     }
   }
 
-  public void NewMessage(PropertyChangeEvent propertyChangeEvent)
+  public void newMessage(PropertyChangeEvent propertyChangeEvent)
   {
     try
     {
@@ -176,11 +159,6 @@ public class ServerSocketHandler implements Runnable
     {
       e.printStackTrace();
     }
-  }
-
-  public String getUsername()
-  {
-    return username;
   }
 
   private void close()

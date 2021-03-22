@@ -10,8 +10,10 @@ public class Message implements Serializable
   private String message;
   private boolean command;
 
-  /** Constructor for Message class, needs username, message to send and a
-   *  boolean to check if the message is a command or just text message */
+  /**
+   * Constructor for Message class, needs username, message to send and a
+   * boolean to check if the message is a command or just text message
+   */
   public Message(String user, String message, boolean command)
   {
     this.user = user;
@@ -45,7 +47,6 @@ public class Message implements Serializable
     else
       return LocalTime.now().getSecond() + "";
   }
-
 
   public String getUser()
   {

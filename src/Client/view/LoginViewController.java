@@ -18,7 +18,6 @@ public class LoginViewController
   {
     this.viewModelLogin = viewModelLogin;
     this.viewHandler = viewHandler;
-
     usernameTextField.textProperty()
         .bindBidirectional(viewModelLogin.usernameProperty());
   }

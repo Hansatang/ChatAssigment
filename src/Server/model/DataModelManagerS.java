@@ -1,6 +1,5 @@
 package Server.model;
 
-
 import shared.Message;
 
 import java.beans.PropertyChangeListener;
@@ -13,7 +12,7 @@ public class DataModelManagerS implements DataModelS
   /** Constructor for DataModelManagerS */
   public DataModelManagerS()
   {
-    this.support =  new PropertyChangeSupport(this);
+    this.support = new PropertyChangeSupport(this);
   }
 
   /** Send a property change (event) to the property listeners */
@@ -28,6 +27,5 @@ public class DataModelManagerS implements DataModelS
   {
     support.addPropertyChangeListener(name, listener);
   }
-
 
 }

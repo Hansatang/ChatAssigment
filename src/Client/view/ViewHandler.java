@@ -35,12 +35,10 @@ public class ViewHandler
     try
     {
       root = loader.load();
-
     }
     catch (IOException e)
     {
       e.printStackTrace();
-
     }
     LoginViewController viewController = loader.getController();
     viewController.init(viewModelFactory.getViewModelLogin(), this);
@@ -65,12 +63,10 @@ public class ViewHandler
     try
     {
       root = loader.load();
-
     }
     catch (IOException e)
     {
       e.printStackTrace();
-
     }
     ChatViewController viewController = loader.getController();
     viewController.init(viewModelFactory.getViewModelChat());

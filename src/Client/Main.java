@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 
 public class Main extends Application
 {
-
   private DataModel model;
   private ViewModelFactory viewModelFactory;
   private ViewHandler viewHandler;

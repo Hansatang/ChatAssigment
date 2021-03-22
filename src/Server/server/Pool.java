@@ -24,13 +24,11 @@ public class Pool
   {
     for (int i = 0; i < connections.size(); i++)
     {
-      System.out.println(connections.size());
       if (connections.get(i) == ssh)
       {
         connections.remove(ssh);
       }
     }
-    System.out.println(connections.size());
   }
 
   /** Return a list containing all the connections */
