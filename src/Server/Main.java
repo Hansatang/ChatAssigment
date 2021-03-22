@@ -1,5 +1,7 @@
-package Server.server;
+package Server;
 
+import Server.server.Server;
+import Server.server.ServerView;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
