@@ -21,7 +21,6 @@ public class ServerReadSave implements Runnable
           System.out.println("Test msg "+message.isCommand());
           if (message.isCommand())
           {
-
             if (message.getMessage().equals("Users"))
             {
               String str = "";

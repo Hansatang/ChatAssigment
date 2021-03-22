@@ -1,6 +1,5 @@
 package server;
 
-
 import model.User;
 import utility.ServerOperationModel;
 
@@ -25,7 +24,7 @@ public class Server implements Runnable
   {
     this.port = port;
     this.serverOperationModel = dataModelS;
-   userSet = new HashSet<User>();
+    userSet = new HashSet<User>();
 
   }
 
@@ -72,7 +71,8 @@ public class Server implements Runnable
     this.running = running;
   }
 
-  public static void remove(User user) {
+  public static void remove(User user)
+  {
     userSet.remove(user);
   }
 }
