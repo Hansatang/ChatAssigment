@@ -14,6 +14,7 @@ public class Main extends Application
   private ViewModelFactory viewModelFactory;
   private ViewHandler viewHandler;
 
+  /** Method to run when client GUI starts */
   @Override public void start(Stage stage)
   {
     model = new DataModelManager();
@@ -22,6 +23,7 @@ public class Main extends Application
     viewHandler.start(stage);
   }
 
+  /** Method ro run before client GUI closes */
   @Override public void stop()
   {
     try

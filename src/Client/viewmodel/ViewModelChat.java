@@ -77,6 +77,6 @@ public class ViewModelChat
   public void closeChat()
   {
     model.sendMessage(new Message(model.getUsername(), "exit", true));
-    model.decreateClient();
+    model.deactivateClient();
   }
 }

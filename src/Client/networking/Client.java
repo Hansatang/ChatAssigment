@@ -60,12 +60,14 @@ public class Client implements ClientModel
     support.addPropertyChangeListener(name, listener);
   }
 
+  /** Sends a property change to listeners to check if there are any unread messages */
   @Override public void receiveMessage(Message message)
   {
     System.out.println("Client receive" + message);
     support.firePropertyChange("NewMessage", null, message);
   }
 
+  /** Close the client-server connection from the client side */
   @Override public void deactivateClient()
   {
     running = false;
@@ -80,6 +82,7 @@ public class Client implements ClientModel
     }
   }
 
+  /** Check if client is still running/online  */
   public boolean isRunning()
   {
     return running;

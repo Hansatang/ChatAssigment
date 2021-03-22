@@ -12,12 +12,14 @@ public class ClientSocketHandler implements Runnable
   private Socket socket;
   private Client client;
 
+  /** Constructor  */
   public ClientSocketHandler(Socket socket, Client client)
   {
     this.socket = socket;
     this.client = client;
   }
 
+  /** Run method for the thread */
   @Override public void run()
   {
     try
