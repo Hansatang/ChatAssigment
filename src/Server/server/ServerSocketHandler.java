@@ -73,7 +73,7 @@ public class ServerSocketHandler implements Runnable
     }
   }
 
-  /** Method to run when a client connects, send a message to server */
+  /** Method to run when a client connects, send a message to clients */
   private void connectedMessageFromClient()
   {
     this.username = message.getUser();
@@ -86,7 +86,7 @@ public class ServerSocketHandler implements Runnable
     }
   }
 
-  /** Method to run when client disconnects, sends a message to server */
+  /** Method to run when client disconnects, sends a message to clients */
   private void disconnectionMessageFromClient()
   {
     for (ServerSocketHandler client : server.getPool().getConnections())
