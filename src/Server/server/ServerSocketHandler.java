@@ -125,8 +125,17 @@ public class ServerSocketHandler implements Runnable
     {
       if (client.username.equals(username))
       {
-        client.sendMsg("There is  " + server.getPool().getConnections().size()
-            + " user connected \n" + str);
+        try
+        {
+          client.out.writeObject(new Message("Server>>>",
+              "There is  " + server.getPool().getConnections().size()
+                  + " user connected \n" + str, false));
+        }
+        catch (IOException e)
+        {
+          e.printStackTrace();
+        }
+
       }
     }
   }
@@ -142,18 +151,6 @@ public class ServerSocketHandler implements Runnable
           client.out.writeObject(propertyChangeEvent.getNewValue());
         }
       }
-    }
-    catch (IOException e)
-    {
-      e.printStackTrace();
-    }
-  }
-
-  public void sendMsg(String msg)
-  {
-    try
-    {
-      out.writeObject(new Message("Server>>>", msg, false));
     }
     catch (IOException e)
     {
