@@ -19,6 +19,7 @@ public class ServerSocketHandler implements Runnable
   private Message message;
   private boolean connected;
 
+  /** Constructor for Server Socket Handler */
   public ServerSocketHandler(Socket socket, DataModelS dataModelS,
       Server server)
   {
@@ -39,6 +40,7 @@ public class ServerSocketHandler implements Runnable
     }
   }
 
+  /** Method to run when thread is started */
   public void run()
   {
     while (connected)
@@ -71,6 +73,7 @@ public class ServerSocketHandler implements Runnable
     }
   }
 
+  /** Method to run when a client connects, send a message to server */
   private void connectedMessageFromClient()
   {
     this.username = message.getUser();
@@ -83,6 +86,7 @@ public class ServerSocketHandler implements Runnable
     }
   }
 
+  /** Method to run when client disconnects, sends a message to server */
   private void disconnectionMessageFromClient()
   {
     for (ServerSocketHandler client : server.getPool().getConnections())
@@ -104,6 +108,7 @@ public class ServerSocketHandler implements Runnable
     close();
   }
 
+  /** Receive message from clients */
   private void normalMessageFromClient()
   {
     for (ServerSocketHandler client : server.getPool().getConnections())
@@ -112,6 +117,7 @@ public class ServerSocketHandler implements Runnable
     }
   }
 
+  /** Send amount of users to client requesting it */
   private void getUsersMessageFromClient()
   {
     String str = "";
@@ -140,6 +146,7 @@ public class ServerSocketHandler implements Runnable
     }
   }
 
+  /** Event when a new message is received */
   public void newMessage(PropertyChangeEvent propertyChangeEvent)
   {
     try
@@ -158,6 +165,7 @@ public class ServerSocketHandler implements Runnable
     }
   }
 
+  /** Close all connections from the server */
   private void close()
   {
     try
