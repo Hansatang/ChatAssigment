@@ -16,6 +16,7 @@ public class ServerView
 
   private Thread serverThread;
 
+  /** Method to run when server gui is opened */
   public void init(Stage stage)
   {
     try
@@ -34,6 +35,7 @@ public class ServerView
     }
   }
 
+  /** Method to run when user click on "Start server" JavaFX button */
   @FXML public void startServer()
   {
     label.setText("Server is running...");
@@ -43,6 +45,7 @@ public class ServerView
     serverThread.start();
   }
 
+  /** Method to run when user click on "Stop server" JavaFX button */
   @FXML public void stopServer()
   {
     label.setText("Server is turned off");

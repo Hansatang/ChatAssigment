@@ -13,6 +13,7 @@ public class LoginViewController
   private ViewModelLogin viewModelLogin;
   private ViewHandler viewHandler;
 
+  /** Method to run when opening the client login GUI */
   public void init(ViewModelLogin viewModelLogin, ViewHandler viewHandler)
   {
     this.viewModelLogin = viewModelLogin;
@@ -22,6 +23,7 @@ public class LoginViewController
         .bindBidirectional(viewModelLogin.usernameProperty());
   }
 
+  /** Method to use when the user has pressed the login button */
   @FXML public void startChat()
   {
     viewModelLogin.startChat();
