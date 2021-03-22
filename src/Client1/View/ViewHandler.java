@@ -26,6 +26,7 @@ public class ViewHandler
     openLoginView();
   }
 
+  /** Inserts the stage with the client login content */
   public void openLoginView()
   {
     FXMLLoader loader = new FXMLLoader();
@@ -55,6 +56,7 @@ public class ViewHandler
     stage.show();
   }
 
+  /** Inserts the stage with the client chat content */
   public void openChatView()
   {
     FXMLLoader loader = new FXMLLoader();

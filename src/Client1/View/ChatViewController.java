@@ -18,6 +18,7 @@ public class ChatViewController
 
   private ViewModelChat viewModelChat;
 
+  /** Method to run when opening the client GUI */
   public void init(ViewModelChat viewModelChat)
   {
     this.viewModelChat = viewModelChat;
@@ -29,6 +30,7 @@ public class ChatViewController
         .bindBidirectional(viewModelChat.userProperty());
   }
 
+  /** Method to run when user presses enter/clicks on send message button */
   @FXML public void sendMessage()
   {
     viewModelChat.sendMessage();

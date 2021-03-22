@@ -20,6 +20,7 @@ public class Client implements ClientModel
   private String name;
   private PropertyChangeSupport support;
 
+  /** Client constructor, requires a name/username for client */
   public Client(String name)
   {
     this.name = name;
@@ -48,6 +49,8 @@ public class Client implements ClientModel
 
   }
 
+
+  /** Send a Message object from client to server */
   @Override public void sendMessage(Message text)
   {
     try

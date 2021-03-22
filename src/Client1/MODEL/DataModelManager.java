@@ -14,6 +14,7 @@ public class DataModelManager implements DataModel
   private String name;
   private PropertyChangeSupport support = new PropertyChangeSupport(this);
 
+
   @Override public void sendMessage(Message text)
   {
     client.sendMessage(text);
