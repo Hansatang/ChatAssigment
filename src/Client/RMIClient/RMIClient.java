@@ -1,6 +1,5 @@
 package Client.RMIClient;
 
-import Client.networking.ClientModel;
 import callbackexample.shared.UpperCaseClient;
 import callbackexample.shared.UpperCaseServer;
 

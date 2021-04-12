@@ -1,7 +1,7 @@
 package Client.model;
 
 import Client.networking.RMIClient;
-import Client.networking.ClientModel;
+import Client.RMIClient.ClientModel;
 import shared.Message;
 
 import java.beans.PropertyChangeEvent;

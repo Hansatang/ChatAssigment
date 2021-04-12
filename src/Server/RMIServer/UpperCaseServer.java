@@ -1,6 +1,6 @@
 package Server.RMIServer;
 
-import Client.networking.ClientModel;
+import Client.RMIClient.ClientModel;
 import shared.Message;
 
 import java.beans.PropertyChangeEvent;
