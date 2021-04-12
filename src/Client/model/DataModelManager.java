@@ -87,4 +87,16 @@ public class DataModelManager implements DataModel
     return name;
   }
 
+  @Override public void getUsers()
+  {
+    try
+    {
+      client.getUsers();
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
+  }
+
 }

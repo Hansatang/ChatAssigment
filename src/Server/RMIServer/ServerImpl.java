@@ -23,7 +23,7 @@ public class ServerImpl implements ChatServer
 
     try
     {
-      System.out.println(clientToRegister.getUser());
+      System.out.println(clientToRegister.getUsername());
     }
     catch (RemoteException e)
     {
@@ -41,7 +41,7 @@ public class ServerImpl implements ChatServer
     {
       try
       {
-        System.out.println(client.getUser());
+        System.out.println(client.getUsername());
         client.receiveMessage(result);
       }
       catch (RemoteException e)
@@ -102,13 +102,17 @@ public class ServerImpl implements ChatServer
 
     for (ClientModel client : clientsForBroadcast)
     {
-      // str += client.getUsername + ", ";
-      str += "haha" + ", ";
+      try
+      {
+        str += client.getUsername() + ", ";
+      }
+      catch (RemoteException e)
+      {
+        e.printStackTrace();
+      }
     }
 
     System.out.println(str);
-    //   System.out.println(username);
-
     try
     {
       dontBroadcastToMe.sendMessage(new Message("Server>>>",

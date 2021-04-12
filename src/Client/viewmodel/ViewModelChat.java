@@ -57,7 +57,8 @@ public class ViewModelChat
 
   public void getUsers()
   {
-    model.sendMessage(new Message(model.getUsername(), "Users", true));
+   // model.sendMessage(new Message(model.getUsername(), "Users", true));
+    model.getUsers();
   }
 
   public void updated(PropertyChangeEvent evt)

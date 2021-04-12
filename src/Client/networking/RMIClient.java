@@ -28,12 +28,10 @@ public class RMIClient implements ClientModel
     this.name = name;
     UnicastRemoteObject.exportObject(this, 0);
     support = new PropertyChangeSupport(this);
-    System.out.println(11);
   }
 
   @Override public void startClient() throws RemoteException
   {
-    System.out.println(22);
     Registry registry = LocateRegistry.getRegistry("localhost", 1099);
     try
     {
@@ -44,6 +42,7 @@ public class RMIClient implements ClientModel
       e.printStackTrace();
     }
     server.registerClient(this);
+    server.connectedMessageFromClient(new Message(name, "Connection", true));
   }
 
   /** Send a Message object from client to server */
@@ -51,7 +50,6 @@ public class RMIClient implements ClientModel
   {
     try
     {
-      System.out.println(44);
       server.normalMessageFromClient(text, this);
     }
     catch (IOException e)
@@ -65,7 +63,7 @@ public class RMIClient implements ClientModel
 
   }
 
-  @Override public String getUser()
+  @Override public String getUsername()
   {
     return name;
   }
@@ -73,9 +71,20 @@ public class RMIClient implements ClientModel
   /** Sends a property change to listeners to check if there are any unread messages */
   @Override public void receiveMessage(Message message)
   {
-    System.out.println(55);
     System.out.println("Client receive" + message);
     support.firePropertyChange("NewMessage", null, message);
+  }
+
+  @Override public void getUsers()
+  {
+    try
+    {
+      server.getUsersMessageFromClient(this);
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   @Override public void addPropertyChangeListener(String name,
@@ -90,15 +99,6 @@ public class RMIClient implements ClientModel
   }
   /*
 
-   */
-  /** Sends a property change to listeners to check if there are any unread messages *//*
-
-  @Override public void receiveMessage(Message message)
-  {
-    System.out.println("Client receive" + message);
-    support.firePropertyChange("NewMessage", null, message);
-  }
-*/
 
   /* *//** Close the client-server connection from the client side *//*
   @Override public void deactivateClient()
@@ -115,9 +115,4 @@ public class RMIClient implements ClientModel
     }
   }*/
 
-  /** Check if client is still running/online */
-  public boolean isRunning()
-  {
-    return running;
-  }
 }

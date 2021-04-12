@@ -13,4 +13,5 @@ public interface DataModel
   void addPropertyChangeListener(String name, PropertyChangeListener listener);
   void deactivateClient();
   String getUsername();
+  void getUsers();
 }
