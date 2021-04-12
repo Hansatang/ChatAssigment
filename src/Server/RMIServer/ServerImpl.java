@@ -1,21 +1,15 @@
 package Server.RMIServer;
 
 import Client.RMIClient.ClientModel;
-import Server.server.ServerSocketHandler;
 import shared.Message;
-
-import java.beans.PropertyChangeEvent;
-import java.io.IOException;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServerImpl implements UpperCaseServer
+public class ServerImpl implements ChatServer
 {
-
-  private String username;
   private List<ClientModel> clientsForBroadcast;
 
   public ServerImpl() throws RemoteException
@@ -30,7 +24,7 @@ public class ServerImpl implements UpperCaseServer
   }
 
   /** Receive message from clients */
-  public void normalMessageFromClient(String result,
+  public void normalMessageFromClient(Message result,
       ClientModel dontBroadcastToMe)
   {
     for (ClientModel client : clientsForBroadcast)
@@ -38,14 +32,7 @@ public class ServerImpl implements UpperCaseServer
       if (client.equals(dontBroadcastToMe))
         continue;
 
-      try
-      {
-        client.update(result);
-      }
-      catch (RemoteException e)
-      {
-        e.printStackTrace();
-      }
+      client.sendMessage(result);
     }
   }
 
@@ -56,15 +43,8 @@ public class ServerImpl implements UpperCaseServer
 
     for (ClientModel client : clientsForBroadcast)
     {
-      try
-      {
-        client.sendMessage(new Message("Server>>>",
-            text.getUser() + " connected to he server ", false));
-      }
-      catch (RemoteException e)
-      {
-        e.printStackTrace();
-      }
+      client.sendMessage(new Message("Server>>>",
+          text.getUser() + " connected to he server ", false));
     }
 
   }
@@ -79,16 +59,9 @@ public class ServerImpl implements UpperCaseServer
       if (client.equals(dontBroadcastToMe))
         continue;
 
-      try
-      {
-        client.sendMessage(
-            new Message("Server>>>", username + " disconnected to he server ",
-                false));
-      }
-      catch (RemoteException e)
-      {
-        e.printStackTrace();
-      }
+      client.sendMessage(
+          new Message("Server>>>", "username" + " disconnected to he server ",
+              false));
     }
   }
 
@@ -99,36 +72,17 @@ public class ServerImpl implements UpperCaseServer
 
     for (ClientModel client : clientsForBroadcast)
     {
-      str += client.getUsername + ", ";
+     // str += client.getUsername + ", ";
+      str += "haha" + ", ";
     }
 
     System.out.println(str);
-    System.out.println(username);
+ //   System.out.println(username);
 
     dontBroadcastToMe.sendMessage(new Message("Server>>>",
         "There is  " + clientsForBroadcast.size() + " user connected \n" + str,
         false));
 
-  }
-
-  /** Event when a new message is received */
-  @Override public void newMessage(PropertyChangeEvent propertyChangeEvent,
-      ClientModel client)
-  {
-    try
-    {
-      for (ServerSocketHandler client : server.getPool().getConnections())
-      {
-        if (client.username.equals(username))
-        {
-          client.out.writeObject(propertyChangeEvent.getNewValue());
-        }
-      }
-    }
-    catch (IOException e)
-    {
-      e.printStackTrace();
-    }
   }
 
 }

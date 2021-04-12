@@ -1,7 +1,7 @@
 package Server.server;
 
 import Server.RMIServer.ServerImpl;
-import Server.RMIServer.UpperCaseServer;
+import Server.RMIServer.ChatServer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -40,7 +40,7 @@ public class ServerView
   /** Method to run when user click on "Start server" JavaFX button */
   @FXML public void startServer() throws RemoteException, AlreadyBoundException
   {
-    UpperCaseServer server = new ServerImpl();
+    ChatServer server = new ServerImpl();
     Registry registry = LocateRegistry.createRegistry(1099);
     registry.bind("Server", server);
     System.out.println("Server started");
