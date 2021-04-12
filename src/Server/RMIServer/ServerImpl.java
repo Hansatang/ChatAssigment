@@ -1,8 +1,6 @@
 package Server.RMIServer;
 
-import Client.networking.ClientModel;
-import Server.model.DataModelS;
-import Server.server.Server;
+import Client.RMIClient.ClientModel;
 import Server.server.ServerSocketHandler;
 import shared.Message;
 

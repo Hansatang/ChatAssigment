@@ -1,4 +1,4 @@
-package Client.networking;
+package Client.RMIClient;
 
 import shared.Message;
 import shared.transferobjects.LogEntry;

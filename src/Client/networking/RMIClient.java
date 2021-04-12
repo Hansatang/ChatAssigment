@@ -1,13 +1,11 @@
 package Client.networking;
 
+import Client.RMIClient.ClientModel;
 import Server.server.Server;
-import shared.Message;
 import shared.transferobjects.LogEntry;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -58,26 +56,27 @@ public class RMIClient implements ClientModel
   }
 
 
-
-
-
   @Override public void addPropertyChangeListener(String name,
       PropertyChangeListener listener)
   {
     support.addPropertyChangeListener(name, listener);
   }
+/*
 
-  /** Sends a property change to listeners to check if there are any unread messages */
+  */
+/** Sends a property change to listeners to check if there are any unread messages *//*
+
   @Override public void receiveMessage(Message message)
   {
     System.out.println("Client receive" + message);
     support.firePropertyChange("NewMessage", null, message);
   }
+*/
 
-  /** Close the client-server connection from the client side */
+ /* *//** Close the client-server connection from the client side *//*
   @Override public void deactivateClient()
   {
-  /*  running = false;
+    running = false;
     try
     {
       objectOutputStream.close();
@@ -86,8 +85,8 @@ public class RMIClient implements ClientModel
     catch (IOException e)
     {
       e.printStackTrace();
-    }*/
-  }
+    }
+  }*/
 
 
 
