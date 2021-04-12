@@ -1,8 +1,10 @@
 package Client.networking;
 
 import shared.Message;
+import shared.transferobjects.LogEntry;
 
 import java.beans.PropertyChangeListener;
+import java.util.List;
 
 public interface ClientModel
 {
@@ -10,4 +12,6 @@ public interface ClientModel
   void receiveMessage(Message message);
   void addPropertyChangeListener(String name, PropertyChangeListener listener);
   void deactivateClient();
+  List<LogEntry> getLog();
+  void startClient();
 }
