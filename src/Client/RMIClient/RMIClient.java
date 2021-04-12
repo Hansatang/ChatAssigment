@@ -1,5 +1,6 @@
 package Client.RMIClient;
 
+import Client.networking.ClientModel;
 import callbackexample.shared.UpperCaseClient;
 import callbackexample.shared.UpperCaseServer;
 
@@ -9,7 +10,8 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-public class RMIClient implements UpperCaseClient {
+public class RMIClient implements ClientModel
+{
 
     private UpperCaseServer server;
 
