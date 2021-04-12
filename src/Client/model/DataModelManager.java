@@ -1,6 +1,6 @@
 package Client.model;
 
-import Client.networking.Client;
+import Client.networking.RMIClient;
 import Client.networking.ClientModel;
 import shared.Message;
 
@@ -27,7 +27,7 @@ public class DataModelManager implements DataModel
 
   @Override public void createClient(String name)
   {
-    client = new Client(name);
+    client = new RMIClient(name);
     client.addPropertyChangeListener("NewMessage", this::update);
     this.name = name;
   }

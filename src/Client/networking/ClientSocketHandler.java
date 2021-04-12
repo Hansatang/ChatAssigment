@@ -10,13 +10,13 @@ public class ClientSocketHandler implements Runnable
 {
   private ObjectInputStream inputStream;
   private Socket socket;
-  private Client client;
+  private RMIClient RMIClient;
 
   /** Constructor  */
-  public ClientSocketHandler(Socket socket, Client client)
+  public ClientSocketHandler(Socket socket, RMIClient RMIClient)
   {
     this.socket = socket;
-    this.client = client;
+    this.RMIClient = RMIClient;
   }
 
   /** Run method for the thread */
@@ -30,13 +30,13 @@ public class ClientSocketHandler implements Runnable
     {
       e.printStackTrace();
     }
-    while (client.isRunning())
+    while (RMIClient.isRunning())
     {
       try
       {
         Message message = (Message) inputStream.readObject();
         System.out.println("Receive message " + message.getMessage());
-        client.receiveMessage(message);
+        RMIClient.receiveMessage(message);
       }
       catch (IOException | ClassNotFoundException e)
       {

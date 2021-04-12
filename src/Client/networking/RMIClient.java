@@ -1,58 +1,65 @@
 package Client.networking;
 
+import Server.server.Server;
 import shared.Message;
+import shared.transferobjects.LogEntry;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
+import java.util.List;
 
-public class Client implements ClientModel
+public class RMIClient implements ClientModel
 {
   private Socket socket;
-  private ObjectOutputStream objectOutputStream;
   private boolean running = true;
   private String name;
   private PropertyChangeSupport support;
+  private  Server server;
 
   /** Client constructor, requires a name/username for client */
-  public Client(String name)
+  public RMIClient(String name)
   {
     this.name = name;
     support = new PropertyChangeSupport(this);
-    try
-    {
-      this.socket = new Socket("localhost", 2910);
-      this.objectOutputStream = new ObjectOutputStream(
-          socket.getOutputStream());
-    }
-    catch (IOException e)
-    {
-      throw new RuntimeException("Unable to connect to the server");
-    }
 
-    ClientSocketHandler clientSocketHandler = new ClientSocketHandler(socket,
-        this);
-    Thread thread = new Thread(clientSocketHandler);
-    thread.setDaemon(true);
-    thread.start();
 
-    sendMessage(new Message(name, "Connection", true));
   }
 
-  /** Send a Message object from client to server */
-  @Override public void sendMessage(Message text)
-  {
-    try
-    {
-      objectOutputStream.writeObject(text);
-    }
-    catch (IOException e)
-    {
+  @Override
+  public void startClient() {
+
+    try {
+      UnicastRemoteObject.exportObject(this, 0);
+      Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+      server = (Server) registry.lookup("ChatServer");
+      //server.registerClient(this);
+    } catch (RemoteException | NotBoundException e) {
       e.printStackTrace();
     }
   }
+
+
+  @Override
+  public List<LogEntry> getLog() {
+    try {
+      return server.getLogs();
+    } catch (RemoteException e) {
+      throw new RuntimeException("Could not contact server");
+    }
+
+  }
+
+
+
+
 
   @Override public void addPropertyChangeListener(String name,
       PropertyChangeListener listener)
@@ -70,7 +77,7 @@ public class Client implements ClientModel
   /** Close the client-server connection from the client side */
   @Override public void deactivateClient()
   {
-    running = false;
+  /*  running = false;
     try
     {
       objectOutputStream.close();
@@ -79,8 +86,10 @@ public class Client implements ClientModel
     catch (IOException e)
     {
       e.printStackTrace();
-    }
+    }*/
   }
+
+
 
   /** Check if client is still running/online  */
   public boolean isRunning()
