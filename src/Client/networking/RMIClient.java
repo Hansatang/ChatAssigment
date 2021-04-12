@@ -39,7 +39,7 @@ public class RMIClient implements ClientModel
     try {
       UnicastRemoteObject.exportObject(this, 0);
       Registry registry = LocateRegistry.getRegistry("localhost", 1099);
-      server = (Server) registry.lookup("UppercaseServer");
+      server = (Server) registry.lookup("ChatServer");
       //server.registerClient(this);
     } catch (RemoteException | NotBoundException e) {
       e.printStackTrace();
