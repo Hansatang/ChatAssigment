@@ -1,6 +1,5 @@
 package Server.RMIServer;
 
-import callbackexample.shared.UpperCaseServer;
 
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;

@@ -1,7 +1,6 @@
 package Server.RMIServer;
 
-import callbackexample.shared.UpperCaseClient;
-import callbackexample.shared.UpperCaseServer;
+import Client.networking.ClientModel;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -13,7 +12,7 @@ public class ServerImpl implements UpperCaseServer {
     }
 
     @Override
-    public void toUpperCase(String str, UpperCaseClient client) {
+    public void toUpperCase(String str, ClientModel client) {
         String result = str.toUpperCase();
         // heavy calculation here
 
