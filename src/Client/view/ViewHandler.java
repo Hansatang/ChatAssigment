@@ -12,12 +12,7 @@ import java.io.IOException;
 public class ViewHandler
 {
   private Stage stage;
-  private ViewModelFactory viewModelFactory;
-
-  public ViewHandler(ViewModelFactory viewModelFactory)
-  {
-    this.viewModelFactory = viewModelFactory;
-  }
+  private ViewModelFactory viewModelFactory = ViewModelFactory.getInstance();
 
   public void start(Stage primaryStage)
   {
@@ -41,7 +36,7 @@ public class ViewHandler
       e.printStackTrace();
     }
     LoginViewController viewController = loader.getController();
-    viewController.init(viewModelFactory.getViewModelLogin(), this);
+    viewController.init(viewModelFactory.getModelLogin(), this);
     stage.setTitle("Login View");
     Scene scene = new Scene(root);
     stage.setScene(scene);
@@ -69,7 +64,7 @@ public class ViewHandler
       e.printStackTrace();
     }
     ChatViewController viewController = loader.getController();
-    viewController.init(viewModelFactory.getViewModelChat());
+    viewController.init(viewModelFactory.getModelChat());
     stage.setTitle("Chat View");
     Scene scene = new Scene(root);
     stage.setScene(scene);

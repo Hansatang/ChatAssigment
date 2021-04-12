@@ -4,7 +4,9 @@ import Client.model.DataModel;
 
 import Client.model.DataModelManager;
 import Client.view.ViewHandler;
+import Client.viewmodel.ViewModelChat;
 import Client.viewmodel.ViewModelFactory;
+import Client.viewmodel.ViewModelLogin;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -18,8 +20,11 @@ public class Main extends Application
   @Override public void start(Stage stage)
   {
     model = new DataModelManager();
-    viewModelFactory = new ViewModelFactory(model);
-    viewHandler = new ViewHandler(viewModelFactory);
+    viewModelFactory = ViewModelFactory.getInstance();
+    viewModelFactory.setDataModel(model);
+    viewModelFactory.setModelChat(new ViewModelChat(viewModelFactory.getDataModel()));
+    viewModelFactory.setModelLogin(new ViewModelLogin(viewModelFactory.getDataModel()));
+    viewHandler = new ViewHandler();
     viewHandler.start(stage);
   }
 
@@ -28,7 +33,7 @@ public class Main extends Application
   {
     try
     {
-      viewModelFactory.getViewModelChat().closeChat();
+      viewModelFactory.getModelChat().closeChat();
     }
     catch (NullPointerException e)
     {
