@@ -40,6 +40,7 @@ public class ViewModelChat
     return User;
   }
 
+
   public void sendMessage()
   {
     if (message.get() != null)

@@ -21,6 +21,7 @@ public class Server implements Runnable
 
   }
 
+  /** Method to run when thread is started */
   @Override public void run()
   {
     try
@@ -48,6 +49,7 @@ public class Server implements Runnable
     }
   }
 
+  /** Close the server */
   public void closeServerSocket()
   {
     try

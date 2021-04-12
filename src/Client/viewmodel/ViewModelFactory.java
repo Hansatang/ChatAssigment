@@ -15,6 +15,7 @@ public class ViewModelFactory
     this.viewModelLogin = new ViewModelLogin(dataModel);
   }
 
+
   public ViewModelLogin getViewModelLogin()
   {
     return viewModelLogin;
