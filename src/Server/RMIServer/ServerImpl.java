@@ -62,7 +62,7 @@ public class ServerImpl implements ChatServer
       try
       {
         client.sendMessage(new Message("Server>>>",
-            text.getUser() + " connected to he server ", false));
+            text.getUser() + " connected to the server ", false));
       }
       catch (RemoteException e)
       {
