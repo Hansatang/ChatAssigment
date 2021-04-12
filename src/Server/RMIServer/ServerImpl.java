@@ -61,7 +61,7 @@ public class ServerImpl implements ChatServer
     {
       try
       {
-        client.sendMessage(new Message("Server>>>",
+        client.receiveMessage(new Message("Server>>>",
             text.getUser() + " connected to he server ", false));
       }
       catch (RemoteException e)
@@ -115,7 +115,7 @@ public class ServerImpl implements ChatServer
     System.out.println(str);
     try
     {
-      dontBroadcastToMe.sendMessage(new Message("Server>>>",
+      dontBroadcastToMe.receiveMessage(new Message("Server>>>",
           "There is  " + clientsForBroadcast.size() + " user connected \n"
               + str, false));
     }

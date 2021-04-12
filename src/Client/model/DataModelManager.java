@@ -98,5 +98,4 @@ public class DataModelManager implements DataModel
       e.printStackTrace();
     }
   }
-
 }
