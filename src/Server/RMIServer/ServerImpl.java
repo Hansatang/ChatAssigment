@@ -2,6 +2,7 @@ package Server.RMIServer;
 
 import Client.RMIClient.ClientModel;
 import shared.Message;
+import shared.transferobjects.LogEntry;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -84,5 +85,6 @@ public class ServerImpl implements ChatServer
         false));
 
   }
+
 
 }

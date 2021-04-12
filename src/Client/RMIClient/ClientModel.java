@@ -5,6 +5,7 @@ import shared.transferobjects.LogEntry;
 
 import java.beans.PropertyChangeListener;
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.List;
 
 public interface ClientModel extends Remote
@@ -15,5 +16,6 @@ public interface ClientModel extends Remote
   List<LogEntry> getLog();
   void startClient();
   void sendMessage(Message text);
+  void update(LogEntry log) throws RemoteException;
 
 }

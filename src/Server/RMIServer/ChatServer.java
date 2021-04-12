@@ -2,6 +2,7 @@ package Server.RMIServer;
 
 import Client.RMIClient.ClientModel;
 import shared.Message;
+import shared.transferobjects.LogEntry;
 
 import java.beans.PropertyChangeEvent;
 import java.rmi.Remote;
@@ -17,5 +18,6 @@ public interface ChatServer extends Remote
       throws RemoteException;
   void getUsersMessageFromClient(ClientModel dontBroadcastToMe) throws RemoteException;
   void registerClient(ClientModel clientToRegister) throws RemoteException;
+
 
 }
