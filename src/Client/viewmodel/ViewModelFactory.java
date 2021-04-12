@@ -14,8 +14,6 @@ public class ViewModelFactory
     this.viewModelChat = new ViewModelChat(dataModel);
     this.viewModelLogin = new ViewModelLogin(dataModel);
   }
-
-
   public ViewModelLogin getViewModelLogin()
   {
     return viewModelLogin;

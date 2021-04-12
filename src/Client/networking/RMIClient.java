@@ -1,70 +1,95 @@
 package Client.networking;
 
 import Client.RMIClient.ClientModel;
+import Server.RMIServer.ChatServer;
 import Server.RMIServer.ServerImpl;
-import Server.server.Server;
+import shared.Message;
 import shared.transferobjects.LogEntry;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.net.Socket;
+import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.List;
 
 public class RMIClient implements ClientModel
 {
-  private Socket socket;
   private boolean running = true;
   private String name;
   private PropertyChangeSupport support;
-  private ServerImpl server;
+  private ChatServer server;
 
   /** Client constructor, requires a name/username for client */
   public RMIClient(String name) throws RemoteException
   {
     this.name = name;
-    support = new PropertyChangeSupport(this);
     UnicastRemoteObject.exportObject(this, 0);
+    support = new PropertyChangeSupport(this);
+    System.out.println(11);
   }
 
-  @Override
-  public void startClient() {
+  @Override public void startClient() throws RemoteException
+  {
+    System.out.println(22);
+    Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+    try
+    {
+      server = (ChatServer) registry.lookup("ChatServer");
+    }
+    catch (NotBoundException e)
+    {
+      e.printStackTrace();
+    }
+    server.registerClient(this);
+  }
 
-    try {
-      UnicastRemoteObject.exportObject(this, 0);
-      Registry registry = LocateRegistry.getRegistry("localhost", 1099);
-      server = (Server) registry.lookup("ChatServer");
-      server.registerClient(this);
-    } catch (RemoteException | NotBoundException e) {
+  /** Send a Message object from client to server */
+  @Override public void sendMessage(Message text)
+  {
+    try
+    {
+      server.normalMessageFromClient(text, this);
+    }
+    catch (IOException e)
+    {
       e.printStackTrace();
     }
   }
 
-
-  @Override
-  public List<LogEntry> getLog() {
-    try {
-      return server.getLogs();
-    } catch (RemoteException e) {
-      throw new RuntimeException("Could not contact server");
-    }
+  @Override public void update(LogEntry log) throws RemoteException
+  {
 
   }
 
+  @Override public String getUser()
+  {
+    return name;
+  }
+
+  /** Sends a property change to listeners to check if there are any unread messages */
+  @Override public void receiveMessage(Message message)
+  {
+    System.out.println("Client receive" + message);
+    support.firePropertyChange("NewMessage", null, message);
+  }
 
   @Override public void addPropertyChangeListener(String name,
       PropertyChangeListener listener)
   {
     support.addPropertyChangeListener(name, listener);
   }
-/*
 
-  */
-/** Sends a property change to listeners to check if there are any unread messages *//*
+  @Override public void deactivateClient()
+  {
+
+  }
+  /*
+
+   */
+  /** Sends a property change to listeners to check if there are any unread messages *//*
 
   @Override public void receiveMessage(Message message)
   {
@@ -73,7 +98,7 @@ public class RMIClient implements ClientModel
   }
 */
 
- /* *//** Close the client-server connection from the client side *//*
+  /* *//** Close the client-server connection from the client side *//*
   @Override public void deactivateClient()
   {
     running = false;
@@ -88,9 +113,7 @@ public class RMIClient implements ClientModel
     }
   }*/
 
-
-
-  /** Check if client is still running/online  */
+  /** Check if client is still running/online */
   public boolean isRunning()
   {
     return running;

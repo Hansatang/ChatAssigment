@@ -40,6 +40,7 @@ public class ServerView
   /** Method to run when user click on "Start server" JavaFX button */
   @FXML public void startServer() throws RemoteException, AlreadyBoundException
   {
+    label.setText("Server is running...");
     ChatServer server = new ServerImpl();
     Registry registry = LocateRegistry.createRegistry(1099);
     registry.bind("Server", server);

@@ -2,7 +2,6 @@ package Server.RMIServer;
 
 import Client.RMIClient.ClientModel;
 import shared.Message;
-import shared.transferobjects.LogEntry;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -21,11 +20,18 @@ public class ServerImpl implements ChatServer
 
   @Override public void registerClient(ClientModel clientToRegister)
   {
-    clientsForBroadcast.add(clientToRegister);
+    try
+    {
+      System.out.println(clientToRegister.getUser());
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    } clientsForBroadcast.add(clientToRegister);
   }
 
   /** Receive message from clients */
-  public void normalMessageFromClient(Message result,
+ @Override public void normalMessageFromClient(Message result,
       ClientModel dontBroadcastToMe)
   {
     for (ClientModel client : clientsForBroadcast)
@@ -33,7 +39,14 @@ public class ServerImpl implements ChatServer
       if (client.equals(dontBroadcastToMe))
         continue;
 
-      client.sendMessage(result);
+      try
+      {
+        client.receiveMessage(result);
+      }
+      catch (RemoteException e)
+      {
+        e.printStackTrace();
+      }
     }
   }
 
@@ -44,8 +57,15 @@ public class ServerImpl implements ChatServer
 
     for (ClientModel client : clientsForBroadcast)
     {
-      client.sendMessage(new Message("Server>>>",
-          text.getUser() + " connected to he server ", false));
+      try
+      {
+        client.sendMessage(new Message("Server>>>",
+            text.getUser() + " connected to he server ", false));
+      }
+      catch (RemoteException e)
+      {
+        e.printStackTrace();
+      }
     }
 
   }
@@ -60,9 +80,16 @@ public class ServerImpl implements ChatServer
       if (client.equals(dontBroadcastToMe))
         continue;
 
-      client.sendMessage(
-          new Message("Server>>>", "username" + " disconnected to he server ",
-              false));
+      try
+      {
+        client.sendMessage(
+            new Message("Server>>>", "username" + " disconnected to he server ",
+                false));
+      }
+      catch (RemoteException e)
+      {
+        e.printStackTrace();
+      }
     }
   }
 
@@ -80,9 +107,16 @@ public class ServerImpl implements ChatServer
     System.out.println(str);
  //   System.out.println(username);
 
-    dontBroadcastToMe.sendMessage(new Message("Server>>>",
-        "There is  " + clientsForBroadcast.size() + " user connected \n" + str,
-        false));
+    try
+    {
+      dontBroadcastToMe.sendMessage(new Message("Server>>>",
+          "There is  " + clientsForBroadcast.size() + " user connected \n" + str,
+          false));
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
 
   }
 

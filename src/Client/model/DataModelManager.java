@@ -7,6 +7,8 @@ import shared.Message;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 
 public class DataModelManager implements DataModel
 {
@@ -17,7 +19,14 @@ public class DataModelManager implements DataModel
 
   @Override public void sendMessage(Message text)
   {
-    client.sendMessage(text);
+    try
+    {
+      client.sendMessage(text);
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   @Override public void update(PropertyChangeEvent evt)
@@ -27,9 +36,31 @@ public class DataModelManager implements DataModel
 
   @Override public void createClient(String name)
   {
-    client = new RMIClient(name);
-    client.addPropertyChangeListener("NewMessage", this::update);
+    try
+    {
+      client = new RMIClient(name);
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
+    try
+    {
+      client.addPropertyChangeListener("NewMessage", this::update);
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
     this.name = name;
+    try
+    {
+      client.startClient();
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   @Override public void addPropertyChangeListener(String name,
@@ -40,7 +71,14 @@ public class DataModelManager implements DataModel
 
   @Override public void deactivateClient()
   {
-    client.deactivateClient();
+    try
+    {
+      client.deactivateClient();
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   @Override public String getUsername()
