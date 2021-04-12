@@ -2,7 +2,6 @@ package Client.networking;
 
 import Client.RMIClient.ClientModel;
 import Server.RMIServer.ChatServer;
-import Server.RMIServer.ServerImpl;
 import shared.Message;
 import shared.transferobjects.LogEntry;
 
@@ -21,6 +20,7 @@ public class RMIClient implements ClientModel
   private String name;
   private PropertyChangeSupport support;
   private ChatServer server;
+  private Registry registry;
 
   /** Client constructor, requires a name/username for client */
   public RMIClient(String name) throws RemoteException
@@ -32,7 +32,7 @@ public class RMIClient implements ClientModel
 
   @Override public void startClient() throws RemoteException
   {
-    Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+    registry = LocateRegistry.getRegistry("localhost", 1099);
     try
     {
       server = (ChatServer) registry.lookup("ChatServer");
@@ -95,7 +95,14 @@ public class RMIClient implements ClientModel
 
   @Override public void deactivateClient()
   {
-
+    try
+    {
+      registry.unbind("ChatServer");
+    }
+    catch (RemoteException | NotBoundException e)
+    {
+      e.printStackTrace();
+    }
   }
   /*
 
