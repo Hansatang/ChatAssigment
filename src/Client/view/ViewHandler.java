@@ -41,7 +41,7 @@ public class ViewHandler
       e.printStackTrace();
     }
     LoginViewController viewController = loader.getController();
-    viewController.init(viewModelFactory.getViewModelLogin(), this);
+    viewController.init(viewModelFactory.getModelLogin(), this);
     stage.setTitle("Login View");
     Scene scene = new Scene(root);
     stage.setScene(scene);
@@ -69,7 +69,7 @@ public class ViewHandler
       e.printStackTrace();
     }
     ChatViewController viewController = loader.getController();
-    viewController.init(viewModelFactory.getViewModelChat());
+    viewController.init(viewModelFactory.getModelChat());
     stage.setTitle("Chat View");
     Scene scene = new Scene(root);
     stage.setScene(scene);
