@@ -1,6 +1,7 @@
 package Client.networking;
 
 import Client.RMIClient.ClientModel;
+import Server.RMIServer.ServerImpl;
 import Server.server.Server;
 import shared.transferobjects.LogEntry;
 
@@ -20,15 +21,14 @@ public class RMIClient implements ClientModel
   private boolean running = true;
   private String name;
   private PropertyChangeSupport support;
-  private  Server server;
+  private ServerImpl server;
 
   /** Client constructor, requires a name/username for client */
-  public RMIClient(String name)
+  public RMIClient(String name) throws RemoteException
   {
     this.name = name;
     support = new PropertyChangeSupport(this);
-
-
+    UnicastRemoteObject.exportObject(this, 0);
   }
 
   @Override
