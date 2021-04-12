@@ -1,5 +1,7 @@
 package Server.server;
 
+import Server.RMIServer.ServerImpl;
+import Server.RMIServer.UpperCaseServer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,14 +10,14 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.rmi.AlreadyBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 
 public class ServerView
 {
   @FXML Label label;
-  private Server server;
-
-  private Thread serverThread;
-
   /** Method to run when server gui is opened */
   public void init(Stage stage)
   {
@@ -36,21 +38,20 @@ public class ServerView
   }
 
   /** Method to run when user click on "Start server" JavaFX button */
-  @FXML public void startServer()
+  @FXML public void startServer() throws RemoteException, AlreadyBoundException
   {
-    label.setText("Server is running...");
-    this.server = new Server(2910);
-
-    serverThread = new Thread(server);
-    serverThread.start();
+    UpperCaseServer server = new ServerImpl();
+    Registry registry = LocateRegistry.createRegistry(1099);
+    registry.bind("Server", server);
+    System.out.println("Server started");
   }
 
   /** Method to run when user click on "Stop server" JavaFX button */
   @FXML public void stopServer()
   {
     label.setText("Server is turned off");
-    server.setRunning(false);
-    server.closeServerSocket();
+//    server.setRunning(false);
+//    server.closeServerSocket();
   }
 
 }

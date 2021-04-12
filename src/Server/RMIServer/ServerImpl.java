@@ -1,13 +1,7 @@
 package Server.RMIServer;
 
 import Client.networking.ClientModel;
-import Server.model.DataModelS;
-import Server.server.Server;
-import Server.server.ServerSocketHandler;
 import shared.Message;
-
-import java.beans.PropertyChangeEvent;
-import java.io.IOException;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -16,7 +10,6 @@ import java.util.List;
 
 public class ServerImpl implements UpperCaseServer
 {
-
   private String username;
   private List<ClientModel> clientsForBroadcast;
 
@@ -42,7 +35,7 @@ public class ServerImpl implements UpperCaseServer
 
       try
       {
-        client.update(result);
+        client.sendMessage(result);
       }
       catch (RemoteException e)
       {
@@ -80,7 +73,6 @@ public class ServerImpl implements UpperCaseServer
     {
       if (client.equals(dontBroadcastToMe))
         continue;
-
       try
       {
         client.sendMessage(
@@ -110,27 +102,5 @@ public class ServerImpl implements UpperCaseServer
     dontBroadcastToMe.sendMessage(new Message("Server>>>",
         "There is  " + clientsForBroadcast.size() + " user connected \n" + str,
         false));
-
   }
-
-  /** Event when a new message is received */
-  @Override public void newMessage(PropertyChangeEvent propertyChangeEvent,
-      ClientModel client)
-  {
-    try
-    {
-      for (ServerSocketHandler client : server.getPool().getConnections())
-      {
-        if (client.username.equals(username))
-        {
-          client.out.writeObject(propertyChangeEvent.getNewValue());
-        }
-      }
-    }
-    catch (IOException e)
-    {
-      e.printStackTrace();
-    }
-  }
-
 }

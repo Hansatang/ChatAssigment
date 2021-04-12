@@ -16,8 +16,6 @@ public interface UpperCaseServer extends Remote
   void normalMessageFromClient(String result, ClientModel dontBroadcastToMe)
       throws RemoteException;
   void getUsersMessageFromClient(ClientModel dontBroadcastToMe) throws RemoteException;
-  void newMessage(PropertyChangeEvent propertyChangeEvent, ClientModel client)
-      throws RemoteException;
   void registerClient(ClientModel clientToRegister) throws RemoteException;
 
 }
