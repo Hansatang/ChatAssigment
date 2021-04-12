@@ -51,6 +51,7 @@ public class RMIClient implements ClientModel
   {
     try
     {
+      System.out.println(44);
       server.normalMessageFromClient(text, this);
     }
     catch (IOException e)
@@ -72,6 +73,7 @@ public class RMIClient implements ClientModel
   /** Sends a property change to listeners to check if there are any unread messages */
   @Override public void receiveMessage(Message message)
   {
+    System.out.println(55);
     System.out.println("Client receive" + message);
     support.firePropertyChange("NewMessage", null, message);
   }

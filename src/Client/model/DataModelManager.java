@@ -21,6 +21,7 @@ public class DataModelManager implements DataModel
   {
     try
     {
+      System.out.println(33);
       client.sendMessage(text);
     }
     catch (RemoteException e)

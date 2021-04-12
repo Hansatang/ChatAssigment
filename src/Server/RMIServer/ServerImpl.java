@@ -20,6 +20,7 @@ public class ServerImpl implements ChatServer
 
   @Override public void registerClient(ClientModel clientToRegister)
   {
+
     try
     {
       System.out.println(clientToRegister.getUser());
@@ -27,20 +28,20 @@ public class ServerImpl implements ChatServer
     catch (RemoteException e)
     {
       e.printStackTrace();
-    } clientsForBroadcast.add(clientToRegister);
+    }
+    clientsForBroadcast.add(clientToRegister);
+    System.out.println(clientsForBroadcast.size()+"Size");
   }
 
   /** Receive message from clients */
- @Override public void normalMessageFromClient(Message result,
+  @Override public void normalMessageFromClient(Message result,
       ClientModel dontBroadcastToMe)
   {
     for (ClientModel client : clientsForBroadcast)
     {
-      if (client.equals(dontBroadcastToMe))
-        continue;
-
       try
       {
+        System.out.println(client.getUser());
         client.receiveMessage(result);
       }
       catch (RemoteException e)
@@ -48,6 +49,7 @@ public class ServerImpl implements ChatServer
         e.printStackTrace();
       }
     }
+    System.out.println(result);
   }
 
   /** Method to run when a client connects, send a message to clients */
@@ -100,18 +102,18 @@ public class ServerImpl implements ChatServer
 
     for (ClientModel client : clientsForBroadcast)
     {
-     // str += client.getUsername + ", ";
+      // str += client.getUsername + ", ";
       str += "haha" + ", ";
     }
 
     System.out.println(str);
- //   System.out.println(username);
+    //   System.out.println(username);
 
     try
     {
       dontBroadcastToMe.sendMessage(new Message("Server>>>",
-          "There is  " + clientsForBroadcast.size() + " user connected \n" + str,
-          false));
+          "There is  " + clientsForBroadcast.size() + " user connected \n"
+              + str, false));
     }
     catch (RemoteException e)
     {
@@ -119,6 +121,5 @@ public class ServerImpl implements ChatServer
     }
 
   }
-
 
 }
