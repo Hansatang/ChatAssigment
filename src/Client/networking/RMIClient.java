@@ -30,7 +30,7 @@ public class RMIClient implements ClientModel
     this.name = name;
     support = new PropertyChangeSupport(this);
 
-    sendMessage(new Message(name, "Connection", true));
+
   }
 
   @Override
@@ -46,18 +46,20 @@ public class RMIClient implements ClientModel
     }
   }
 
-  /** Send a Message object from client to server */
-  @Override public void sendMessage(Message text)
-  {
-    try
-    {
-      objectOutputStream.writeObject(text);
+
+  @Override
+  public List<LogEntry> getLog() {
+    try {
+      return server.getLogs();
+    } catch (RemoteException e) {
+      throw new RuntimeException("Could not contact server");
     }
-    catch (IOException e)
-    {
-      e.printStackTrace();
-    }
+
   }
+
+
+
+
 
   @Override public void addPropertyChangeListener(String name,
       PropertyChangeListener listener)
@@ -75,7 +77,7 @@ public class RMIClient implements ClientModel
   /** Close the client-server connection from the client side */
   @Override public void deactivateClient()
   {
-    running = false;
+  /*  running = false;
     try
     {
       objectOutputStream.close();
@@ -84,18 +86,10 @@ public class RMIClient implements ClientModel
     catch (IOException e)
     {
       e.printStackTrace();
-    }
+    }*/
   }
 
-  @Override
-  public List<LogEntry> getLog() {
-    try {
-      return server.getLogs();
-    } catch (RemoteException e) {
-      throw new RuntimeException("Could not contact server");
-    }
 
-  }
 
   /** Check if client is still running/online  */
   public boolean isRunning()
