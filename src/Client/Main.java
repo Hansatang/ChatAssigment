@@ -20,10 +20,7 @@ public class Main extends Application
   @Override public void start(Stage stage)
   {
     model = new DataModelManager();
-    viewModelFactory = ViewModelFactory.getInstance();
-    viewModelFactory.setDataModel(model);
-    viewModelFactory.setModelChat(new ViewModelChat(viewModelFactory.getDataModel()));
-    viewModelFactory.setModelLogin(new ViewModelLogin(viewModelFactory.getDataModel()));
+    viewModelFactory = ViewModelFactory.getInstance(model);
     viewHandler = new ViewHandler(viewModelFactory);
     viewHandler.start(stage);
   }

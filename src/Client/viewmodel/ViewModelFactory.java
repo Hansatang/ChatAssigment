@@ -7,36 +7,27 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class ViewModelFactory
 {
-  private DataModel dataModel;
-  private ViewModelLogin viewModelLogin;
-  private ViewModelChat viewModelChat;
+  private static DataModel localDataModel;
+  private static ViewModelLogin viewModelLogin;
+  private static ViewModelChat viewModelChat;
 
   private static ViewModelFactory instance;
   private static Lock lock = new ReentrantLock();
 
-  public synchronized void setDataModel(DataModel dataModel){
-    this.dataModel = dataModel;
-  }
-
   public synchronized DataModel getDataModel(){
-    return this.dataModel;
+    return localDataModel;
   }
 
-  public synchronized static ViewModelFactory getInstance(){
+  public synchronized static ViewModelFactory getInstance(DataModel dataModel){
     if(instance == null){
       synchronized (lock){
         instance = new ViewModelFactory();
+        localDataModel = dataModel;
+        viewModelLogin = new ViewModelLogin(dataModel);
+        viewModelChat = new ViewModelChat(dataModel);
       }
     }
     return instance;
-  }
-
-  public synchronized void setModelLogin(ViewModelLogin viewModelLogin){
-    this.viewModelLogin = new ViewModelLogin(dataModel);
-  }
-
-  public synchronized void setModelChat(ViewModelChat viewModelChat){
-    this.viewModelChat = new ViewModelChat(dataModel);
   }
 
   public synchronized ViewModelLogin getModelLogin(){
@@ -46,5 +37,4 @@ public class ViewModelFactory
   public synchronized ViewModelChat getModelChat(){
     return viewModelChat;
   }
-
 }
