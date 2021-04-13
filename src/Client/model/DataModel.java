@@ -11,7 +11,7 @@ public interface DataModel
   void update(PropertyChangeEvent evt);
   void createClient(String name);
   void addPropertyChangeListener(String name, PropertyChangeListener listener);
-  void deactivateClient();
+
   String getUsername();
   void getUsers();
   void closeChat();

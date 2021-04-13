@@ -5,7 +5,7 @@ import Client.model.DataModel;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class ViewModelFactory implements Runnable
+public class ViewModelFactory
 {
   private DataModel dataModel;
   private ViewModelLogin viewModelLogin;
@@ -47,9 +47,4 @@ public class ViewModelFactory implements Runnable
     return viewModelChat;
   }
 
-  @Override
-  public void run() {
-    while(true){
-    }
-  }
 }

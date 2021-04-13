@@ -12,7 +12,6 @@ public interface ClientModel extends Remote
 {
   void addPropertyChangeListener(String name, PropertyChangeListener listener)
       throws RemoteException;
-  void deactivateClient() throws RemoteException;
   void startClient() throws RemoteException;
   void sendMessage(Message text) throws RemoteException;
   String getUsername() throws RemoteException;

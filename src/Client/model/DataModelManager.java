@@ -20,7 +20,6 @@ public class DataModelManager implements DataModel
   {
     try
     {
-      System.out.println(33);
       client.sendMessage(text);
     }
     catch (RemoteException e)
@@ -69,17 +68,6 @@ public class DataModelManager implements DataModel
     support.addPropertyChangeListener(name, listener);
   }
 
-  @Override public void deactivateClient()
-  {
-    try
-    {
-      client.deactivateClient();
-    }
-    catch (RemoteException e)
-    {
-      e.printStackTrace();
-    }
-  }
 
   @Override public String getUsername()
   {

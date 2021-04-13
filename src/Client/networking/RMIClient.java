@@ -91,15 +91,5 @@ public class RMIClient implements ClientModel
     support.addPropertyChangeListener(name, listener);
   }
 
-  @Override public void deactivateClient()
-  {
-//    try
-//    {
-//      registry.unbind("ChatServer");
-//    }
-//    catch (RemoteException | NotBoundException e)
-//    {
-//      e.printStackTrace();
-//    }
-  }
+
 }

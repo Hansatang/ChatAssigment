@@ -20,17 +20,7 @@ public class ServerImpl implements ChatServer
 
   @Override public void registerClient(ClientModel clientToRegister)
   {
-
-    try
-    {
-      System.out.println(clientToRegister.getUsername());
-    }
-    catch (RemoteException e)
-    {
-      e.printStackTrace();
-    }
     clientsForBroadcast.add(clientToRegister);
-    System.out.println(clientsForBroadcast.size() + "Size");
   }
 
   /** Method to run when client disconnects, sends a message to clients */
@@ -48,45 +38,31 @@ public class ServerImpl implements ChatServer
 
   /** Receive message from clients */
   @Override public void normalMessageFromClient(Message result,
-      ClientModel dontBroadcastToMe)
+      ClientModel dontBroadcastToMe) throws RemoteException
   {
     for (ClientModel client : clientsForBroadcast)
     {
-      try
-      {
         System.out.println(client.getUsername());
         client.receiveMessage(result);
-      }
-      catch (RemoteException e)
-      {
-        e.printStackTrace();
-      }
     }
-    System.out.println(result);
   }
 
   /** Method to run when a client connects, send a message to clients */
   @Override public void connectedMessageFromClient(Message text)
+      throws RemoteException
   {
-    text.getUser();
-
     for (ClientModel client : clientsForBroadcast)
     {
-      try
-      {
-        client.receiveMessage(new Message("Server>>>",
-            text.getUser() + " connected to he server ", false));
-      }
-      catch (RemoteException e)
-      {
-        e.printStackTrace();
-      }
-    }
 
+      client.receiveMessage(
+          new Message("Server>>>", text.getUser() + " connected to the server ",
+              false));
+    }
   }
 
   /** Send amount of users to client requesting it */
   @Override public void getUsersMessageFromClient(ClientModel dontBroadcastToMe)
+      throws RemoteException
   {
     String str = "";
 
@@ -101,19 +77,8 @@ public class ServerImpl implements ChatServer
         e.printStackTrace();
       }
     }
-
-    System.out.println(str);
-    try
-    {
-      dontBroadcastToMe.receiveMessage(new Message("Server>>>",
-          "There is  " + clientsForBroadcast.size() + " user connected \n"
-              + str, false));
-    }
-    catch (RemoteException e)
-    {
-      e.printStackTrace();
-    }
-
+    dontBroadcastToMe.receiveMessage(new Message("Server>>>",
+        "There is  " + clientsForBroadcast.size() + " user connected \n" + str,
+        false));
   }
-
 }

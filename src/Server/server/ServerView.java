@@ -16,6 +16,7 @@ import java.rmi.registry.Registry;
 public class ServerView
 {
   @FXML Label label;
+
   /** Method to run when server gui is opened */
   public void init(Stage stage)
   {
