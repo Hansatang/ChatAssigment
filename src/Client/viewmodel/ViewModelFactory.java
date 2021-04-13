@@ -7,7 +7,6 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class ViewModelFactory
 {
-  private DataModel localDataModel;
   private ViewModelLogin viewModelLogin;
   private ViewModelChat viewModelChat;
 
@@ -16,9 +15,8 @@ public class ViewModelFactory
 
   private ViewModelFactory(DataModel dataModel)
   {
-    this.localDataModel = dataModel;
-    this.viewModelLogin = new ViewModelLogin(dataModel);
-    this.viewModelChat = new ViewModelChat(dataModel);
+    viewModelLogin = new ViewModelLogin(dataModel);
+    viewModelChat = new ViewModelChat(dataModel);
   }
 
   public synchronized static ViewModelFactory getInstance(DataModel dataModel)
