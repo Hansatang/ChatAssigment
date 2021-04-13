@@ -14,10 +14,6 @@ public class ViewModelFactory
   private static ViewModelFactory instance;
   private static Lock lock = new ReentrantLock();
 
-  public synchronized DataModel getDataModel(){
-    return localDataModel;
-  }
-
   public synchronized static ViewModelFactory getInstance(DataModel dataModel){
     if(instance == null){
       synchronized (lock){
