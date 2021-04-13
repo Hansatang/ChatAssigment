@@ -14,4 +14,5 @@ public interface DataModel
   void deactivateClient();
   String getUsername();
   void getUsers();
+  void closeChat();
 }

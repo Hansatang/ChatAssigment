@@ -57,7 +57,6 @@ public class ViewModelChat
 
   public void getUsers()
   {
-   // model.sendMessage(new Message(model.getUsername(), "Users", true));
     model.getUsers();
   }
 
@@ -78,7 +77,7 @@ public class ViewModelChat
 
   public void closeChat()
   {
-    model.sendMessage(new Message(model.getUsername(), "exit", true));
+    model.closeChat();
     model.deactivateClient();
   }
 }

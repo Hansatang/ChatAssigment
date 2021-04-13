@@ -1,13 +1,12 @@
 package Client.model;
 
 import Client.networking.RMIClient;
-import Client.RMIClient.ClientModel;
+import Client.networking.ClientModel;
 import shared.Message;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 public class DataModelManager implements DataModel
@@ -92,6 +91,18 @@ public class DataModelManager implements DataModel
     try
     {
       client.getUsers();
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
+  }
+
+  @Override public void closeChat()
+  {
+    try
+    {
+      client.closeChat();
     }
     catch (RemoteException e)
     {

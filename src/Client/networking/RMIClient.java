@@ -1,9 +1,7 @@
 package Client.networking;
 
-import Client.RMIClient.ClientModel;
-import Server.RMIServer.ChatServer;
+import Server.server.ChatServer;
 import shared.Message;
-import shared.transferobjects.LogEntry;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -58,11 +56,6 @@ public class RMIClient implements ClientModel
     }
   }
 
-  @Override public void update(LogEntry log) throws RemoteException
-  {
-
-  }
-
   @Override public String getUsername()
   {
     return name;
@@ -86,6 +79,11 @@ public class RMIClient implements ClientModel
       e.printStackTrace();
     }
   }
+  /** Close the client-server connection from the client side */
+  @Override public void closeChat() throws RemoteException
+  {
+    server.closeChat(this);
+  }
 
   @Override public void addPropertyChangeListener(String name,
       PropertyChangeListener listener)
@@ -95,31 +93,13 @@ public class RMIClient implements ClientModel
 
   @Override public void deactivateClient()
   {
-    try
-    {
-      registry.unbind("ChatServer");
-    }
-    catch (RemoteException | NotBoundException e)
-    {
-      e.printStackTrace();
-    }
+//    try
+//    {
+//      registry.unbind("ChatServer");
+//    }
+//    catch (RemoteException | NotBoundException e)
+//    {
+//      e.printStackTrace();
+//    }
   }
-  /*
-
-
-  /* *//** Close the client-server connection from the client side *//*
-  @Override public void deactivateClient()
-  {
-    running = false;
-    try
-    {
-      objectOutputStream.close();
-      socket.close();
-    }
-    catch (IOException e)
-    {
-      e.printStackTrace();
-    }
-  }*/
-
 }

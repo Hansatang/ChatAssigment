@@ -1,7 +1,5 @@
 package Server.server;
 
-import Server.RMIServer.ServerImpl;
-import Server.RMIServer.ChatServer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

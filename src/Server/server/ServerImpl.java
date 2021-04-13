@@ -1,6 +1,6 @@
-package Server.RMIServer;
+package Server.server;
 
-import Client.RMIClient.ClientModel;
+import Client.networking.ClientModel;
 import shared.Message;
 
 import java.rmi.RemoteException;
@@ -30,7 +30,20 @@ public class ServerImpl implements ChatServer
       e.printStackTrace();
     }
     clientsForBroadcast.add(clientToRegister);
-    System.out.println(clientsForBroadcast.size()+"Size");
+    System.out.println(clientsForBroadcast.size() + "Size");
+  }
+
+  /** Method to run when client disconnects, sends a message to clients */
+  @Override public void closeChat(ClientModel clientToDelete)
+      throws RemoteException
+  {
+    clientsForBroadcast.remove(clientToDelete);
+
+    for (ClientModel client : clientsForBroadcast)
+    {
+      client.receiveMessage(new Message("Server>>>",
+          clientToDelete.getUsername() + " disconnected to he server ", false));
+    }
   }
 
   /** Receive message from clients */
@@ -70,29 +83,6 @@ public class ServerImpl implements ChatServer
       }
     }
 
-  }
-
-  /** Method to run when client disconnects, sends a message to clients */
-  @Override public void disconnectionMessageFromClient(
-      ClientModel dontBroadcastToMe)
-  {
-
-    for (ClientModel client : clientsForBroadcast)
-    {
-      if (client.equals(dontBroadcastToMe))
-        continue;
-
-      try
-      {
-        client.sendMessage(
-            new Message("Server>>>", "username" + " disconnected to he server ",
-                false));
-      }
-      catch (RemoteException e)
-      {
-        e.printStackTrace();
-      }
-    }
   }
 
   /** Send amount of users to client requesting it */
