@@ -11,6 +11,7 @@ import java.io.IOException;
 
 public class ViewHandler
 {
+  /** Declaring objects **/
   private Stage stage;
   private ViewModelFactory viewModelFactory;
 

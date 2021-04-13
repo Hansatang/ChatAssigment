@@ -8,8 +8,10 @@ import javafx.scene.control.TextField;
 
 public class LoginViewController
 {
+  /** Declare FXML object **/
   @FXML private TextField usernameTextField;
 
+  /** Declare ViewModel objects **/
   private ViewModelLogin viewModelLogin;
   private ViewHandler viewHandler;
 
