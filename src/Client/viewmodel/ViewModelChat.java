@@ -11,37 +11,46 @@ import java.beans.PropertyChangeEvent;
 
 public class ViewModelChat
 {
+
+  /** Declaring objects **/
   private StringProperty message;
   private StringProperty chat;
   private StringProperty User;
   private DataModel model;
 
+  /** Constructor takes DataModel object as parameter **/
   public ViewModelChat(DataModel model)
   {
     this.model = model;
     chat = new SimpleStringProperty();
     User = new SimpleStringProperty();
     message = new SimpleStringProperty();
+    /** Listener to update the chat when a new message is detected **/
     model.addPropertyChangeListener("NewMessage", this::updated);
   }
 
+  /** Get method for message **/
   public StringProperty messageProperty()
   {
     return message;
   }
 
+  /** Get method for the chat **/
   public StringProperty chatProperty()
   {
     return chat;
   }
 
+  /** Get method for the username **/
   public Property<String> userProperty()
   {
     return User;
   }
 
+  /** Method to run when user sends a message **/
   public void sendMessage()
   {
+    /** Checks if message is empty and should send a default message **/
     if (message.get() != null)
     {
       model.sendMessage(
@@ -54,11 +63,14 @@ public class ViewModelChat
     }
   }
 
+  /** Method from DataModel **/
   public void getUsers()
   {
     model.getUsers();
   }
 
+
+  /** Update the chat **/
   public void updated(PropertyChangeEvent evt)
   {
     Platform.runLater(() -> {
@@ -74,6 +86,7 @@ public class ViewModelChat
     });
   }
 
+  /** Close client chat **/
   public void closeChat()
   {
     model.closeChat();
