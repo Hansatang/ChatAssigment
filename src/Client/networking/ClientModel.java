@@ -5,7 +5,6 @@ import shared.Message;
 import java.beans.PropertyChangeListener;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.List;
 
 public interface ClientModel extends Remote
 {

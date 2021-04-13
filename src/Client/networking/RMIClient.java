@@ -93,6 +93,4 @@ public class RMIClient implements ClientModel
   {
     support.addPropertyChangeListener(name, listener);
   }
-
-
 }
