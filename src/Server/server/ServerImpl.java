@@ -37,13 +37,13 @@ public class ServerImpl implements ChatServer
   }
 
   /** Receive message from clients */
-  @Override public void normalMessageFromClient(Message result,
-      ClientModel dontBroadcastToMe) throws RemoteException
+  @Override public void normalMessageFromClient(Message result)
+      throws RemoteException
   {
     for (ClientModel client : clientsForBroadcast)
     {
-        System.out.println(client.getUsername());
-        client.receiveMessage(result);
+      System.out.println(client.getUsername());
+      client.receiveMessage(result);
     }
   }
 
@@ -61,7 +61,7 @@ public class ServerImpl implements ChatServer
   }
 
   /** Send amount of users to client requesting it */
-  @Override public void getUsersMessageFromClient(ClientModel dontBroadcastToMe)
+  @Override public void getUsersMessageFromClient(ClientModel clientModel)
       throws RemoteException
   {
     String str = "";
@@ -77,7 +77,7 @@ public class ServerImpl implements ChatServer
         e.printStackTrace();
       }
     }
-    dontBroadcastToMe.receiveMessage(new Message("Server>>>",
+    clientModel.receiveMessage(new Message("Server>>>",
         "There is  " + clientsForBroadcast.size() + " user connected \n" + str,
         false));
   }

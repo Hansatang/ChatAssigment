@@ -14,11 +14,10 @@ import java.rmi.server.UnicastRemoteObject;
 
 public class RMIClient implements ClientModel
 {
-  private boolean running = true;
+  private Registry registry;
+  private ChatServer server;
   private String name;
   private PropertyChangeSupport support;
-  private ChatServer server;
-  private Registry registry;
 
   /** Client constructor, requires a name/username for client */
   public RMIClient(String name) throws RemoteException
@@ -48,7 +47,7 @@ public class RMIClient implements ClientModel
   {
     try
     {
-      server.normalMessageFromClient(text, this);
+      server.normalMessageFromClient(text);
     }
     catch (IOException e)
     {
