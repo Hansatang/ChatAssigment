@@ -14,6 +14,13 @@ public class ViewModelFactory
   private static ViewModelFactory instance;
   private static Lock lock = new ReentrantLock();
 
+  private ViewModelFactory(DataModel dataModel)
+  {
+    localDataModel = dataModel;
+    viewModelLogin = new ViewModelLogin(dataModel);
+    viewModelChat = new ViewModelChat(dataModel);
+  }
+
   public synchronized static ViewModelFactory getInstance(DataModel dataModel)
   {
     if (instance == null)
@@ -22,10 +29,7 @@ public class ViewModelFactory
       {
         if (instance == null)
         {
-          instance = new ViewModelFactory();
-          localDataModel = dataModel;
-          viewModelLogin = new ViewModelLogin(dataModel);
-          viewModelChat = new ViewModelChat(dataModel);
+          instance = new ViewModelFactory(dataModel);
         }
       }
     }
