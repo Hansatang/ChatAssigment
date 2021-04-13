@@ -12,9 +12,12 @@ public class ServerImpl implements ChatServer
 {
   private List<ClientModel> clientsForBroadcast;
 
+  /** Constructor **/
   public ServerImpl() throws RemoteException
   {
+    /** Export this class to clients **/
     UnicastRemoteObject.exportObject(this, 0);
+    /** Initialize ArrayList object for clients **/
     clientsForBroadcast = new ArrayList<>();
   }
 

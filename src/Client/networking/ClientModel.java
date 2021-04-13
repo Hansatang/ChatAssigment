@@ -1,7 +1,6 @@
 package Client.networking;
 
 import shared.Message;
-import shared.transferobjects.LogEntry;
 
 import java.beans.PropertyChangeListener;
 import java.rmi.Remote;

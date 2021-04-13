@@ -14,6 +14,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 public class RMIClient implements ClientModel
 {
+  /** Declaring objects **/
   private Registry registry;
   private ChatServer server;
   private String name;
