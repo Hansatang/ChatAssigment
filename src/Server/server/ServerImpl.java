@@ -20,7 +20,7 @@ public class ServerImpl implements ChatServer
     /** Initialize ArrayList object for clients **/
     clientsForBroadcast = new ArrayList<>();
   }
-
+  /** Register a client to the ArrayList object containing clients **/
   @Override public void registerClient(ClientModel clientToRegister)
   {
     clientsForBroadcast.add(clientToRegister);

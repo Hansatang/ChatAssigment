@@ -11,11 +11,12 @@ import java.rmi.RemoteException;
 
 public class DataModelManager implements DataModel
 {
+  /** Declare objects **/
   private ClientModel client;
   private String name;
   private PropertyChangeSupport support = new PropertyChangeSupport(this);
 
-
+  /** Client sends a message **/
   @Override public void sendMessage(Message text)
   {
     try
@@ -28,11 +29,13 @@ public class DataModelManager implements DataModel
     }
   }
 
+  /** Update when evt occurs **/
   @Override public void update(PropertyChangeEvent evt)
   {
     support.firePropertyChange("NewMessage", null, evt.getNewValue());
   }
 
+  /** Create a client with the name of the parameter **/
   @Override public void createClient(String name)
   {
     try
@@ -62,6 +65,7 @@ public class DataModelManager implements DataModel
     }
   }
 
+  /** Add a listener to client **/
   @Override public void addPropertyChangeListener(String name,
       PropertyChangeListener listener)
   {
@@ -69,11 +73,13 @@ public class DataModelManager implements DataModel
   }
 
 
+  /** Get method for client username **/
   @Override public String getUsername()
   {
     return name;
   }
 
+  /** Method to send when client wants to retrieve the amount of users connected in the chat **/
   @Override public void getUsers()
   {
     try
@@ -86,6 +92,7 @@ public class DataModelManager implements DataModel
     }
   }
 
+  /** Close client side of the chat **/
   @Override public void closeChat()
   {
     try

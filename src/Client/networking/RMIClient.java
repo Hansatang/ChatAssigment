@@ -28,6 +28,7 @@ public class RMIClient implements ClientModel
     support = new PropertyChangeSupport(this);
   }
 
+  /** Start client side of RMI **/
   @Override public void startClient() throws RemoteException
   {
     registry = LocateRegistry.getRegistry("localhost", 1099);
@@ -56,6 +57,7 @@ public class RMIClient implements ClientModel
     }
   }
 
+  /** Get method for client username **/
   @Override public String getUsername()
   {
     return name;
@@ -68,6 +70,7 @@ public class RMIClient implements ClientModel
     support.firePropertyChange("NewMessage", null, message);
   }
 
+  /** Request information about how many users there are connected **/
   @Override public void getUsers()
   {
     try
@@ -84,7 +87,7 @@ public class RMIClient implements ClientModel
   {
     server.closeChat(this);
   }
-
+  /** Add a listener to the client **/
   @Override public void addPropertyChangeListener(String name,
       PropertyChangeListener listener)
   {
