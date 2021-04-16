@@ -3,6 +3,7 @@ package Client.view;
 import Client.viewmodel.ViewModelChat;
 
 import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -26,6 +27,12 @@ public class ChatViewController
         .bindBidirectional(viewModelChat.chatProperty());
     UsernameLabel.textProperty()
         .bindBidirectional(viewModelChat.userProperty());
+    viewModelChat.chatProperty().addListener(new ChangeListener() {
+      @Override
+      public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+        messagesTextArea.appendText("");
+      }
+    });
   }
 
   /** Method to run when user presses enter/clicks on send message button */

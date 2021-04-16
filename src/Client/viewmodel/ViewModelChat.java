@@ -80,7 +80,7 @@ public class ViewModelChat
       }
       else
       {
-        chat.setValue(evt.getNewValue().toString() + "\n" + chat.getValue());
+        chat.setValue(chat.getValue() + "\n" + evt.getNewValue().toString());
       }
     });
 

@@ -3,10 +3,9 @@ package Client;
 import Client.model.DataModel;
 
 import Client.model.DataModelManager;
+
 import Client.view.ViewHandler;
-import Client.viewmodel.ViewModelChat;
 import Client.viewmodel.ViewModelFactory;
-import Client.viewmodel.ViewModelLogin;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -20,6 +19,7 @@ public class Main extends Application
   /** Method to run when client GUI starts */
   @Override public void start(Stage stage)
   {
+
     model = new DataModelManager();
     viewModelFactory = ViewModelFactory.getInstance(model);
     viewHandler = new ViewHandler(viewModelFactory);
