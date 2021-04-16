@@ -1,16 +1,15 @@
 package Client.viewmodel;
 
 import Client.model.DataModel;
+import javafx.beans.property.*;
 import shared.Message;
 import javafx.application.Platform;
-import javafx.beans.property.Property;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 
 import java.beans.PropertyChangeEvent;
 
 public class ViewModelChat
 {
+
 
   /** Declaring objects **/
   private StringProperty message;
@@ -81,9 +80,10 @@ public class ViewModelChat
       }
       else
       {
-        chat.setValue(chat.getValue() + "\n" + evt.getNewValue().toString());
+        chat.setValue(evt.getNewValue().toString() + "\n" + chat.getValue());
       }
     });
+
   }
 
   /** Close client chat **/

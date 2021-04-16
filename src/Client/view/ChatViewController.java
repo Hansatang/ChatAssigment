@@ -2,6 +2,7 @@ package Client.view;
 
 import Client.viewmodel.ViewModelChat;
 
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -11,7 +12,6 @@ public class ChatViewController
 {
   @FXML private Label UsernameLabel;
   @FXML private TextField sentMessageTextField;
-
   @FXML private TextArea messagesTextArea;
 
   private ViewModelChat viewModelChat;
